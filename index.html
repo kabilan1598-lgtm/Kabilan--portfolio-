@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kabilan S — Software Developer</title>
+<title>Kabilan S — Backend Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0c1117;
-    --ink-2:#0f151c;
-    --panel:#141b23;
-    --panel-2:#182028;
-    --border:#26323c;
+    --ink:#08090b;
+    --ink-2:#0d1013;
+    --panel:#141a1f;
+    --panel-2:#191f25;
+    --border:#262e35;
     --accent:#45d9a8;
     --accent-dim:#2a5a4c;
-    --warm:#ff7a50;
-    --warm-dim:#5a3b2c;
-    --text:#e7ecef;
-    --text-muted:#8a97a3;
-    --text-faint:#5c6772;
+    --warm:#ff8a50;
+    --warm-dim:#5c3320;
+    --heading:#f2b134;
+    --text:#e8ecef;
+    --text-muted:#93a0ab;
+    --text-faint:#647079;
     --mono: 'JetBrains Mono', monospace;
     --disp: 'Space Grotesk', sans-serif;
     --body: 'Inter', sans-serif;
@@ -36,18 +37,13 @@
     overflow-x:hidden;
   }
 
-  ::selection{background:var(--accent); color:#0c1117;}
+  ::selection{background:var(--accent); color:#08090b;}
 
   a{color:inherit; text-decoration:none;}
 
-  /* background circuit texture */
-  .circuit-bg{
+  /* animated background canvas */
+  #bgCanvas{
     position:fixed; inset:0; z-index:0; pointer-events:none;
-    opacity:0.05;
-    background-image:
-      linear-gradient(var(--accent) 1px, transparent 1px),
-      linear-gradient(90deg, var(--accent) 1px, transparent 1px);
-    background-size:48px 48px;
   }
 
   .wrap{position:relative; z-index:1;}
@@ -55,9 +51,9 @@
   /* ---------- NAV ---------- */
   nav{
     position:fixed; top:0; left:0; right:0; z-index:50;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 5vw;
-    background:rgba(12,17,23,0.82);
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+    padding:16px 5vw;
+    background:rgba(8,9,11,0.82);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--border);
   }
@@ -66,10 +62,14 @@
     letter-spacing:0.02em; color:var(--text);
   }
   .logo span{color:var(--accent);}
-  .tabs{display:flex; gap:2px;}
+  .tabs{
+    display:flex; gap:2px; overflow-x:auto; scrollbar-width:none;
+    flex:1 1 auto; min-width:0;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
   .tabs a{
     font-family:var(--mono); font-size:12.5px; color:var(--text-muted);
-    padding:8px 14px; border-radius:6px 6px 0 0;
+    padding:8px 14px; border-radius:6px;
     border:1px solid transparent;
     transition:color .2s ease, border-color .2s ease, background .2s ease;
     white-space:nowrap;
@@ -78,18 +78,21 @@
     color:var(--accent); background:var(--panel);
     border-color:var(--border);
   }
-  .nav-toggle{display:none; font-family:var(--mono); color:var(--accent); background:none; border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:13px;}
+
+  .mode-switch{
+    display:flex; border:1px solid var(--border); border-radius:20px;
+    overflow:hidden; font-family:var(--mono); font-size:11.5px; flex-shrink:0;
+  }
+  .mode-switch button{
+    padding:8px 16px; background:none; border:none; color:var(--text-muted);
+    cursor:pointer; transition:all .2s ease; white-space:nowrap;
+  }
+  .mode-switch button.active[data-mode="software"]{background:var(--accent); color:#08090b; font-weight:600;}
+  .mode-switch button.active[data-mode="hardware"]{background:var(--warm); color:#08090b; font-weight:600;}
 
   @media (max-width:880px){
-    .tabs{
-      position:fixed; top:58px; left:0; right:0;
-      flex-direction:column; background:var(--ink-2);
-      border-bottom:1px solid var(--border);
-      max-height:0; overflow:hidden; transition:max-height .3s ease;
-    }
-    .tabs.open{max-height:400px;}
-    .tabs a{padding:14px 5vw; border-radius:0; border-bottom:1px solid var(--border);}
-    .nav-toggle{display:block;}
+    nav{row-gap:12px;}
+    .tabs{order:3; width:100%; flex-basis:100%; padding-top:10px; border-top:1px solid var(--border);}
   }
 
   section{padding:120px 5vw 90px; max-width:1180px; margin:0 auto; position:relative;}
@@ -102,7 +105,7 @@
   }
   .eyebrow::before{content:''; width:18px; height:1px; background:var(--accent);}
 
-  h1,h2,h3{font-family:var(--disp); font-weight:600; letter-spacing:-0.01em;}
+  h1,h2,h3,h4{font-family:var(--disp); font-weight:600; letter-spacing:-0.01em; color:var(--heading);}
 
   /* ---------- HERO ---------- */
   .hero-frame{
@@ -139,6 +142,24 @@
     margin-bottom:26px;
   }
   .detect-tag b{color:var(--accent); font-weight:600;}
+  .detect-tag.hardware{color:var(--warm); border-color:var(--warm-dim); background:rgba(255,138,80,0.08);}
+  .detect-tag.hardware b{color:var(--warm);}
+
+  /* ---------- SWIPEABLE SOFTWARE/HARDWARE PANELS ---------- */
+  .swipe-zone{touch-action:pan-y;}
+  .panel{display:none;}
+  .panel.is-active{display:block; animation:panelIn .35s ease;}
+  @keyframes panelIn{
+    from{opacity:0; transform:translateX(14px);}
+    to{opacity:1; transform:translateX(0);}
+  }
+  .swipe-hint{
+    display:block; font-family:var(--mono); font-size:11px; color:var(--text-faint);
+    margin-top:10px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .panel.is-active{animation:none;}
+  }
 
   h1.name{font-size:clamp(38px, 7vw, 76px); line-height:1.02; margin-bottom:14px;}
   .role-line{
@@ -159,15 +180,14 @@
     font-family:var(--mono); font-size:13px; padding:12px 22px; border-radius:4px;
     border:1px solid var(--border); transition:all .2s ease; display:inline-block;
   }
-  .btn.primary{background:var(--accent); color:#0c1117; border-color:var(--accent); font-weight:600;}
-  .btn.primary:hover{background:#5be6ba;}
+  .btn.primary{background:var(--accent); color:#08090b; border-color:var(--accent); font-weight:600;}
+  .btn.primary:hover{background:#6be6c3;}
   .btn.ghost{color:var(--text); }
   .btn.ghost:hover{border-color:var(--accent); color:var(--accent);}
 
   /* ---------- SECTION HEAD ---------- */
   .sec-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:44px; flex-wrap:wrap; gap:10px;}
   .sec-head h2{font-size:clamp(26px,4vw,36px);}
-  .sec-file{font-family:var(--mono); font-size:12px; color:var(--text-faint);}
 
   /* ---------- ABOUT ---------- */
   .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start;}
@@ -207,7 +227,7 @@
   .proj-status{display:flex; gap:8px; flex-wrap:wrap;}
   .pill{font-family:var(--mono); font-size:10.5px; padding:4px 10px; border-radius:20px; border:1px solid;}
   .pill.allowed{color:var(--accent); border-color:var(--accent-dim); background:rgba(69,217,168,0.08);}
-  .pill.blocked{color:var(--warm); border-color:var(--warm-dim); background:rgba(255,122,80,0.08);}
+  .pill.blocked{color:var(--warm); border-color:var(--warm-dim); background:rgba(255,138,80,0.08);}
   .pill.unknown{color:var(--text-muted); border-color:var(--border); background:rgba(255,255,255,0.02);}
 
   .proj-card p.summary{color:var(--text-muted); font-size:15px; margin-bottom:20px; max-width:70ch;}
@@ -268,18 +288,29 @@
   .cert-list li::before{content:'▹'; position:absolute; left:0; color:var(--accent);}
 
   /* ---------- CONTACT ---------- */
-  .terminal{
-    border:1px solid var(--border); background:#0a0e13; border-radius:8px; overflow:hidden;
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:18px;
   }
-  .terminal-bar{
-    display:flex; gap:6px; padding:12px 16px; border-bottom:1px solid var(--border); background:var(--panel-2);
+  .contact-card{
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px;
+    border:1px solid var(--border); background:var(--panel); border-radius:10px;
+    padding:28px 18px; transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
-  .terminal-bar span{width:10px; height:10px; border-radius:50%; background:var(--border);}
-  .terminal-body{padding:28px 32px; font-family:var(--mono); font-size:14px;}
-  .terminal-body .line{margin-bottom:14px; display:flex; flex-wrap:wrap; gap:10px;}
-  .terminal-body .prompt{color:var(--accent);}
-  .terminal-body .out{color:var(--text-muted);}
-  .terminal-body a.out:hover{color:var(--accent);}
+  .contact-card:hover, .contact-card:focus-visible{
+    transform:translateY(-4px); border-color:var(--border); box-shadow:0 10px 24px -14px rgba(18,24,31,0.18);
+  }
+  .contact-icon{
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:#ffffff; flex-shrink:0;
+  }
+  .contact-icon svg{width:23px; height:23px;}
+  .contact-icon.email{background:linear-gradient(135deg,#ff6a3d,#ea4335);}
+  .contact-icon.phone{background:#22c55e;}
+  .contact-icon.linkedin{background:#0a66c2;}
+  .contact-icon.github{background:#1b1f24;}
+  .contact-icon.instagram{background:linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7);}
+  .contact-label{font-family:var(--mono); font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.04em;}
+  .contact-value{font-size:13.5px; color:var(--text); font-weight:500; word-break:break-word;}
 
   footer{
     text-align:center; padding:36px 5vw 50px; font-family:var(--mono); font-size:12px; color:var(--text-faint);
@@ -295,23 +326,94 @@
   }
 
   :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  /* ---------- PROOF TRIGGERS ---------- */
+  .soft-chip.proof-trigger{
+    cursor:pointer; display:inline-flex; align-items:center; gap:7px;
+    transition:border-color .2s ease, color .2s ease, background .2s ease;
+  }
+  .soft-chip.proof-trigger:hover, .soft-chip.proof-trigger:focus-visible{
+    border-color:var(--accent); color:var(--accent); background:rgba(69,217,168,0.06);
+  }
+  .soft-chip.proof-trigger::after{
+    content:'⌕'; font-size:13px; color:var(--text-faint); transition:color .2s ease;
+  }
+  .soft-chip.proof-trigger:hover::after{color:var(--accent);}
+
+  .proof-btn{
+    margin-top:6px; display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:11.5px; color:var(--accent);
+    background:none; border:1px solid var(--accent-dim); padding:8px 14px;
+    border-radius:4px; cursor:pointer; transition:background .2s ease, color .2s ease;
+  }
+  .proof-btn:hover, .proof-btn:focus-visible{background:rgba(69,217,168,0.1); color:#8be9c9;}
+  .proof-btn::after{content:'⌕';}
+
+  .award-card{cursor:default;}
+  .award-card .proof-btn{margin-top:14px;}
+
+  /* ---------- PROOF MODAL ---------- */
+  .proof-overlay{
+    position:fixed; inset:0; z-index:100; display:none;
+    align-items:center; justify-content:center; padding:5vw;
+    background:rgba(6,9,13,0.78); backdrop-filter:blur(6px);
+  }
+  .proof-overlay.open{display:flex;}
+  .proof-modal{
+    position:relative; width:min(560px, 100%); max-height:86vh; overflow-y:auto;
+    background:var(--panel); border:1px solid var(--border); border-radius:6px;
+    padding:40px 36px;
+  }
+  .proof-modal .corner{width:16px; height:16px;}
+  .proof-close{
+    position:absolute; top:16px; right:16px; background:none; border:1px solid var(--border);
+    color:var(--text-muted); width:32px; height:32px; border-radius:4px; cursor:pointer;
+    font-size:15px; line-height:1; transition:all .2s ease;
+  }
+  .proof-close:hover{border-color:var(--accent); color:var(--accent);}
+  .proof-tag{
+    font-family:var(--mono); font-size:11px; color:var(--warm);
+    border:1px solid var(--warm-dim); background:rgba(255,138,80,0.08);
+    padding:4px 10px; border-radius:3px; display:inline-block; margin-bottom:16px;
+  }
+  #proofTitle{font-size:22px; margin-bottom:20px; padding-right:30px;}
+  .proof-photo{
+    width:100%; min-height:180px; border-radius:6px; overflow:hidden;
+    border:1px dashed var(--border); margin-bottom:22px; background:var(--panel-2);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .proof-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .proof-placeholder{
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    color:var(--text-faint); padding:34px 20px; text-align:center;
+  }
+  .proof-placeholder svg{opacity:0.5;}
+  .proof-placeholder span{font-size:13px; color:var(--text-muted);}
+  .proof-placeholder code{
+    font-family:var(--mono); font-size:10.5px; color:var(--text-faint);
+    background:var(--ink-2); padding:4px 8px; border-radius:3px;
+  }
+  #proofText{color:var(--text-muted); font-size:14.5px;}
 </style>
 </head>
 <body>
 
-<div class="circuit-bg"></div>
+<canvas id="bgCanvas"></canvas>
 <div class="wrap">
 
 <nav>
-  <div class="logo">kabilan<span>.</span>dev</div>
-  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="tabs">menu</button>
+  <div class="logo">Kabln<span>.</span>dev</div>
   <div class="tabs" id="tabs">
-    <a href="#about">about.md</a>
-    <a href="#experience">experience.log</a>
-    <a href="#projects">projects/</a>
-    <a href="#skills">skills.json</a>
-    <a href="#education">education.txt</a>
-    <a href="#contact">contact.sh</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="mode-switch" id="modeSwitch" role="group" aria-label="Portfolio focus">
+    <button type="button" data-mode="software" class="active" aria-pressed="true">Software</button>
+    <button type="button" data-mode="hardware" aria-pressed="false">Hardware</button>
   </div>
 </nav>
 
@@ -321,9 +423,24 @@
     <span class="corner tl"></span><span class="corner tr"></span>
     <span class="corner bl"></span><span class="corner br"></span>
 
-    <div class="detect-tag">CLASS: <b>Software Developer</b> &nbsp;|&nbsp; CONF: 98.9%</div>
-    <h1 class="name">Kabilan S</h1>
-    <p class="role-line">Electronics &amp; Communication Engineering student building with <strong>Python</strong> and <strong>Java</strong> — from embedded robots to computer‑vision systems that run in the real world.</p>
+    <div class="swipe-zone" data-swipe="hero">
+      <div class="panel panel-software is-active">
+        <div class="detect-tag">CLASS: <b>Backend Developer</b> &nbsp;|&nbsp; CONF: 98.9%</div>
+      </div>
+      <div class="panel panel-hardware">
+        <div class="detect-tag hardware">CLASS: <b>Embedded Systems Engineer</b> &nbsp;|&nbsp; CONF: 97.4%</div>
+      </div>
+    </div>
+    <h1 class="name" id="heroName">KABILAN S</h1>
+    <div class="swipe-zone" data-swipe="hero">
+      <div class="panel panel-software is-active">
+        <p class="role-line">Electronics &amp; Communication Engineering student who builds backend-leaning software — <strong>Java</strong> and <strong>Python</strong> systems, data pipelines, and computer-vision platforms like a real-time ANPR system.</p>
+      </div>
+      <div class="panel panel-hardware">
+        <p class="role-line">Electronics &amp; Communication Engineering student passionate about embedded systems and hardware development. Experienced in <strong>Arduino</strong>, <strong>IoT</strong>, microcontrollers, sensor integration, and Embedded C, with a focus on building practical and reliable engineering solutions.</p>
+      </div>
+      <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
+    </div>
 
     <div class="hero-meta">
       <span><span class="dot"></span>Chennai, India</span>
@@ -342,11 +459,14 @@
 <section id="about">
   <div class="sec-head">
     <h2>Objective</h2>
-    <span class="sec-file">// about.md</span>
   </div>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p>I enjoy solving problems through programming and learning new technologies. I'm looking for an opportunity to apply my Java and Python skills, gain hands-on engineering experience, and grow into a software developer who contributes to meaningful projects.</p>
+      <div class="swipe-zone" data-swipe="objective">
+        <p class="panel panel-software is-active">I enjoy solving problems through programming and learning new technologies. I'm looking for an opportunity to apply my Java and Python skills, gain hands-on engineering experience, and grow into a backend developer who contributes to meaningful projects.</p>
+        <p class="panel panel-hardware">I enjoy building and testing hardware — from embedded robotics to industrial control systems. I'm looking for an opportunity to apply my embedded systems and sensor-integration skills, gain hands-on engineering experience, and grow into a hardware/embedded engineer who contributes to meaningful projects.</p>
+        <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
+      </div>
       <p>Currently pursuing a B.E. in Electronics &amp; Communication Engineering, with hands-on exposure to data science, embedded systems, and computer vision through internships and independent projects.</p>
     </div>
     <div class="about-stats">
@@ -360,7 +480,6 @@
 <section id="experience">
   <div class="sec-head">
     <h2>Internships</h2>
-    <span class="sec-file">// experience.log</span>
   </div>
 
   <div class="log-entry reveal">
@@ -389,7 +508,6 @@
 <section id="projects">
   <div class="sec-head">
     <h2>Projects</h2>
-    <span class="sec-file">// projects/</span>
   </div>
 
   <div class="proj-card reveal">
@@ -423,6 +541,7 @@
       <span>GPS <b>13.0827, 80.2707</b></span>
       <span>STATUS <b>ALLOWED</b></span>
     </div>
+    <button class="proof-btn" data-proof="anpr">View proof</button>
   </div>
 
   <div class="proj-card reveal">
@@ -445,35 +564,47 @@
       <span class="tag">Arduino</span><span class="tag">Embedded C</span>
       <span class="tag">Sensor Integration</span><span class="tag">Motor Control</span>
     </div>
+    <button class="proof-btn" data-proof="robot">View proof</button>
   </div>
 </section>
 
 <section id="skills">
   <div class="sec-head">
     <h2>Skills</h2>
-    <span class="sec-file">// skills.json</span>
   </div>
   <div class="reveal">
-    <div class="code-block"><span class="c">// technical skill set</span><br>
+    <div class="swipe-zone" data-swipe="skills">
+      <div class="panel panel-software is-active">
+        <div class="code-block">
 <span class="p">{</span><br>
 &nbsp;&nbsp;<span class="k">"programming"</span>: [<span class="s">"C"</span>, <span class="s">"Python"</span>, <span class="s">"Java"</span>, <span class="s">"Data Structures & Algorithms"</span>],<br>
 &nbsp;&nbsp;<span class="k">"cv_and_data"</span>: [<span class="s">"OpenCV"</span>, <span class="s">"YOLOv8"</span>, <span class="s">"EasyOCR"</span>, <span class="s">"Pandas"</span>, <span class="s">"NumPy"</span>],<br>
 &nbsp;&nbsp;<span class="k">"tools"</span>: [<span class="s">"Streamlit"</span>, <span class="s">"Tkinter"</span>, <span class="s">"Twilio"</span>, <span class="s">"Cloudinary"</span>, <span class="s">"Arduino"</span>]<br>
 <span class="p">}</span></div>
-    <div class="soft-row">
-      <span class="soft-chip">Leadership</span>
-      <span class="soft-chip">Teamwork</span>
-      <span class="soft-chip">Time Management</span>
-      <span class="soft-chip">Adaptability</span>
-      <span class="soft-chip">Quick Learner</span>
+      </div>
+      <div class="panel panel-hardware">
+        <div class="code-block">
+<span class="p">{</span><br>
+&nbsp;&nbsp;<span class="k">"embedded_systems"</span>: [<span class="s">"Arduino"</span>, <span class="s">"Embedded C"</span>, <span class="s">"Sensor Integration"</span>, <span class="s">"Motor Control"</span>],<br>
+&nbsp;&nbsp;<span class="k">"industrial_exposure"</span>: [<span class="s">"Boilers & Turbines"</span>, <span class="s">"Generators & Transformers"</span>, <span class="s">"Control Systems"</span>, <span class="s">"Industrial Safety Practices"</span>, <span class="s">"Equipment Monitoring"</span>]<br>
+<span class="p">}</span></div>
+      </div>
+      <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
     </div>
+    <div class="soft-row">
+      <span class="soft-chip proof-trigger" data-proof="leadership" role="button" tabindex="0">Leadership</span>
+      <span class="soft-chip proof-trigger" data-proof="teamwork" role="button" tabindex="0">Teamwork</span>
+      <span class="soft-chip proof-trigger" data-proof="time" role="button" tabindex="0">Time Management</span>
+      <span class="soft-chip proof-trigger" data-proof="adaptability" role="button" tabindex="0">Adaptability</span>
+      <span class="soft-chip proof-trigger" data-proof="quicklearn" role="button" tabindex="0">Quick Learner</span>
+    </div>
+    <p style="font-family:var(--mono); font-size:11.5px; color:var(--text-faint); margin-top:14px;">⌕ tap a skill to see proof</p>
   </div>
 </section>
 
 <section id="education">
   <div class="sec-head">
     <h2>Education</h2>
-    <span class="sec-file">// education.txt</span>
   </div>
   <div class="reveal">
     <div class="edu-card">
@@ -498,23 +629,25 @@
 
   <div class="sec-head" style="margin-top:60px;">
     <h2>Awards &amp; Certifications</h2>
-    <span class="sec-file">// awards.txt</span>
   </div>
   <div class="award-grid reveal">
     <div class="award-card">
       <span class="tag-mini">PAPER PRESENTATION</span>
       <h4>Multi-Mode Autonomous Robot</h4>
       <p>Participation Certificate — National Level Symposium, CIT</p>
+      <button class="proof-btn" data-proof="award-robot">View proof</button>
     </div>
     <div class="award-card">
       <span class="tag-mini">PAPER PRESENTATION</span>
       <h4>Safety Interlock System for Boiler Protection</h4>
       <p>Participation Certificate — National Level Symposium, Loyola–ICAM</p>
+      <button class="proof-btn" data-proof="award-boiler">View proof</button>
     </div>
     <div class="award-card">
       <span class="tag-mini">CERTIFICATION</span>
       <h4>Python for Data Science</h4>
       <p>NPTEL Online Certification</p>
+      <button class="proof-btn" data-proof="award-nptel">View proof</button>
     </div>
     <div class="award-card">
       <span class="tag-mini">E-CERTIFICATIONS</span>
@@ -522,6 +655,7 @@
       <ul class="cert-list">
         <li>Codex</li><li>Byte the Bomb</li><li>Astrologiq</li><li>Cipher Odyssey</li><li>Hypothesis Hub</li><li>Circuit Wars</li>
       </ul>
+      <button class="proof-btn" data-proof="award-slice">View proof</button>
     </div>
   </div>
 </section>
@@ -529,49 +663,381 @@
 <section id="contact">
   <div class="sec-head">
     <h2>Contact</h2>
-    <span class="sec-file">// contact.sh</span>
   </div>
-  <div class="terminal reveal">
-    <div class="terminal-bar"><span></span><span></span><span></span></div>
-    <div class="terminal-body">
-      <div class="line"><span class="prompt">$</span> echo $EMAIL</div>
-      <div class="line" style="margin-top:-8px;"><a class="out" href="mailto:kabilanvec@gmail.com">kabilanvec@gmail.com</a></div>
-      <div class="line"><span class="prompt">$</span> echo $PHONE</div>
-      <div class="line" style="margin-top:-8px;"><span class="out">+91 70102 86455</span></div>
-      <div class="line"><span class="prompt">$</span> open --linkedin</div>
-      <div class="line" style="margin-top:-8px;"><a class="out" href="https://linkedin.com/in/kabilan-s-429b39292" target="_blank" rel="noopener">linkedin.com/in/kabilan-s-429b39292</a></div>
-      <div class="line"><span class="prompt">$</span> <span style="opacity:0.5;">_</span></div>
-    </div>
+  <div class="contact-grid reveal">
+    <a class="contact-card" href="mailto:kabilanvec@gmail.com">
+      <span class="contact-icon email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </span>
+      <span class="contact-label">Email</span>
+      <span class="contact-value">kabilanvec@gmail.com</span>
+    </a>
+    <a class="contact-card" href="tel:+917010286455">
+      <span class="contact-icon phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </span>
+      <span class="contact-label">Call</span>
+      <span class="contact-value">+91 70102 86455</span>
+    </a>
+    <a class="contact-card" href="https://linkedin.com/in/kabilan-s-429b39292" target="_blank" rel="noopener">
+      <span class="contact-icon linkedin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5A5.98 5.98 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </span>
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">kabilan-s</span>
+    </a>
+    <a class="contact-card" href="https://github.com/kabilan1598-lgtm" target="_blank" rel="noopener">
+      <span class="contact-icon github">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.4c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+      </span>
+      <span class="contact-label">GitHub</span>
+      <span class="contact-value">kabilan1598-lgtm</span>
+    </a>
+    <a class="contact-card" href="https://www.instagram.com/_.kabln.___/" target="_blank" rel="noopener">
+      <span class="contact-icon instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <span class="contact-label">Instagram</span>
+      <span class="contact-value">_.kabln.___</span>
+    </a>
   </div>
 </section>
 
-<footer>© 2026 Kabilan S — built with intent, not a template.</footer>
+<footer>Copyright © 2026 KABILAN S — Backend Developer.</footer>
+</div>
+
+<div class="proof-overlay" id="proofOverlay">
+  <div class="proof-modal" role="dialog" aria-modal="true" aria-labelledby="proofTitle">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <button class="proof-close" id="proofClose" aria-label="Close">✕</button>
+    <span class="proof-tag" id="proofTag"></span>
+    <h3 id="proofTitle"></h3>
+    <div class="proof-photo" id="proofPhoto"></div>
+    <p id="proofText"></p>
+  </div>
 </div>
 
 <script>
-  // mobile nav toggle
-  const navToggle = document.getElementById('navToggle');
-  const tabs = document.getElementById('tabs');
-  navToggle.addEventListener('click', () => {
-    const open = tabs.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', open);
-  });
-  tabs.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    tabs.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  }));
+  // ANIMATED NODE-NETWORK BACKGROUND
+  (function(){
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // scroll reveal
+    let w, h, dpr;
+    let particles = [];
+    const LINK_DIST = 130;
+    const ACCENT = '56,189,248'; // bright cyan-blue, distinct from teal/gold accents
+
+    function density(){
+      // fewer particles on small screens, more on large ones
+      const area = w * h;
+      return Math.max(28, Math.min(70, Math.round(area / 26000)));
+    }
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seedParticles();
+    }
+
+    function seedParticles(){
+      const count = density();
+      particles = new Array(count).fill(0).map(() => {
+        const angle = Math.random() * Math.PI * 2; // any direction
+        const speed = 0.4 + Math.random() * 0.7;
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          r: 1.1 + Math.random() * 1.3
+        };
+      });
+    }
+
+    function step(){
+      ctx.clearRect(0, 0, w, h);
+
+      // move + wrap
+      for (const p of particles){
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -20) p.x = w + 20;
+        if (p.x > w + 20) p.x = -20;
+        if (p.y < -20) p.y = h + 20;
+        if (p.y > h + 20) p.y = -20;
+      }
+
+      // links
+      for (let i = 0; i < particles.length; i++){
+        for (let j = i + 1; j < particles.length; j++){
+          const a = particles[i], b = particles[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < LINK_DIST){
+            const alpha = (1 - dist / LINK_DIST) * 0.2;
+            ctx.strokeStyle = `rgba(${ACCENT},${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // dots
+      for (const p of particles){
+        ctx.fillStyle = `rgba(${ACCENT},0.45)`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (!reduceMotion) requestAnimationFrame(step);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    step(); // draws one static frame even under reduced motion
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+<script>
+  // ANIME.JS ENHANCEMENTS 
   const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (typeof anime !== 'undefined' && !prefersReduced) {
+    const { animate, stagger, scrambleText, onScroll } = anime;
+
+    // hero name: scramble/decode reveal on load
+    const heroName = document.getElementById('heroName');
+    if (heroName) {
+      animate(heroName, {
+        innerHTML: scrambleText(),
+        duration: 1300,
+        ease: 'outExpo'
+      });
+    }
+
+    // spring-eased scroll reveal for every .reveal block
+    revealEls.forEach(el => {
+      el.style.transition = 'none'; // let anime drive it, not the CSS fallback
+      animate(el, {
+        opacity: [0, 1],
+        translateY: [26, 0],
+        duration: 900,
+        ease: 'spring(1, 80, 12, 0)',
+        autoplay: onScroll({ target: el, repeat: false })
+      });
+    });
+
+    // cascading stagger for skill chips and project tags
+    animate('.soft-chip', {
+      opacity: [0, 1],
+      translateY: [14, 0],
+      delay: stagger(60),
+      duration: 700,
+      ease: 'spring(1, 90, 14, 0)',
+      autoplay: onScroll({ target: '.soft-row', repeat: false })
+    });
+    animate('.tag', {
+      opacity: [0, 1],
+      scale: [0.85, 1],
+      delay: stagger(40),
+      duration: 600,
+      ease: 'spring(1, 90, 14, 0)',
+      autoplay: onScroll({ target: '.tag-row', repeat: false })
+    });
+  } else {
+    // fallback: plain fade-up via IntersectionObserver + CSS
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  }
+
+  // SOFTWARE / HARDWARE MODE SWITCH
+  let currentMode = 'software';
+  const modeButtons = document.querySelectorAll('#modeSwitch button');
+
+  function setMode(mode){
+    if (mode === currentMode) return;
+    currentMode = mode;
+    document.querySelectorAll('.panel-software').forEach(el => el.classList.toggle('is-active', mode === 'software'));
+    document.querySelectorAll('.panel-hardware').forEach(el => el.classList.toggle('is-active', mode === 'hardware'));
+    modeButtons.forEach(btn => {
+      const isActive = btn.getAttribute('data-mode') === mode;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive);
+    });
+  }
+
+  modeButtons.forEach(btn => btn.addEventListener('click', () => setMode(btn.getAttribute('data-mode'))));
+
+  document.querySelectorAll('[data-swipe]').forEach(zone => {
+    let startX = 0, startY = 0, tracking = false;
+    zone.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+    }, { passive: true });
+    zone.addEventListener('touchend', (e) => {
+      if (!tracking) return;
+      tracking = false;
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+        setMode(dx > 0 ? 'hardware' : 'software');
+      }
+    }, { passive: true });
+  });
+
+  // PROOF SYSTEM
+  const PROOF_DATA = {
+    leadership: {
+      tag: 'SOFT SKILL — LEADERSHIP',
+      title: 'Leadership',
+      text: 'Took the lead on designing and presenting the Multi-Mode Autonomous Robot at the CIT National Level Symposium — planning the build, dividing tasks, and speaking to the judging panel. Replace this with your own specific story and add a photo from the event.',
+      img: 'assets/proof/leadership.jpg'
+    },
+    teamwork: {
+      tag: 'SOFT SKILL — TEAMWORK',
+      title: 'Teamwork',
+      text: 'Worked alongside peers during the Data Science internship at DLK Software Solutions, splitting up preprocessing and analysis work on shared datasets. Swap in a specific example and a team photo here.',
+      img: 'assets/proof/teamwork.jpg'
+    },
+    time: {
+      tag: 'SOFT SKILL — TIME MANAGEMENT',
+      title: 'Time Management',
+      text: 'Delivered two internships and two independent projects — the Autonomous Robot and the ANPR system — inside a single academic year, each with its own fixed deadline. Add a screenshot of a project timeline or planner here.',
+      img: 'assets/proof/time-management.jpg'
+    },
+    adaptability: {
+      tag: 'SOFT SKILL — ADAPTABILITY',
+      title: 'Adaptability',
+      text: 'Moved between hardware-first robotics work (Arduino, sensors, motor control) and software-first computer vision development (Python, YOLOv8, OpenCV) — picking up each toolchain as the project demanded. Add a photo of you working across either setup.',
+      img: 'assets/proof/adaptability.jpg'
+    },
+    quicklearn: {
+      tag: 'SOFT SKILL — QUICK LEARNER',
+      title: 'Quick Learner',
+      text: 'Completed the NPTEL "Python for Data Science" certification and put it to direct use in the same year — during the DLK Software Solutions internship. Add your certificate image here as proof.',
+      img: 'assets/proof/quick-learner.jpg'
+    },
+    anpr: {
+      tag: 'PROJECT — 12/2025 – 04/2026',
+      title: 'AI-Based Smart Bus Entry & Exit Monitoring System',
+      text: 'A real-time ANPR pipeline: YOLOv8 detects plates, EasyOCR reads them, and a CSV-backed authentication layer tags each vehicle Allowed, Blocked, or Unknown — with Twilio/WhatsApp and email alerts, Cloudinary image storage, and a Streamlit analytics dashboard. Add a screenshot of the dashboard or a demo GIF here.',
+      img: 'assets/proof/anpr-demo.jpg'
+    },
+    robot: {
+      tag: 'PROJECT — 04/2025 – 05/2025',
+      title: 'Multi-Mode Autonomous Robot',
+      text: 'A 4-mode Arduino robot switching between obstacle avoidance, line following, hybrid navigation, and object tracking — built and presented as a paper at the CIT National Level Symposium. Add a build photo or the presentation slide here.',
+      img: 'assets/proof/robot-demo.jpg'
+    },
+    'award-robot': {
+      tag: 'PAPER PRESENTATION',
+      title: 'Multi-Mode Autonomous Robot — CIT Symposium',
+      text: 'Participation certificate from the National Level Symposium at CIT for the Multi-Mode Autonomous Robot paper. Add a scan or photo of the certificate here.',
+      img: 'assets/proof/cert-cit.jpg'
+    },
+    'award-boiler': {
+      tag: 'PAPER PRESENTATION',
+      title: 'Safety Interlock System for Boiler Protection — Loyola–ICAM',
+      text: 'Participation certificate from the National Level Symposium at Loyola–ICAM for the Safety Interlock System for Boiler Protection paper. Add a scan or photo of the certificate here.',
+      img: 'assets/proof/cert-loyola-icam.jpg'
+    },
+    'award-nptel': {
+      tag: 'CERTIFICATION',
+      title: 'Python for Data Science — NPTEL',
+      text: 'Online certification from NPTEL covering Python for Data Science. Add your certificate PDF screenshot or image here.',
+      img: 'assets/proof/cert-nptel.jpg'
+    },
+    'award-slice': {
+      tag: 'E-CERTIFICATIONS',
+      title: 'Slice v25',
+      text: 'Certificates from Slice v25: Codex, Byte the Bomb, Astrologiq, Cipher Odyssey, Hypothesis Hub, and Circuit Wars. Add scans of each certificate, or a combined image, here.',
+      img: 'assets/proof/cert-slice-v25.jpg'
+    }
+  };
+
+  const overlay = document.getElementById('proofOverlay');
+  const proofTag = document.getElementById('proofTag');
+  const proofTitle = document.getElementById('proofTitle');
+  const proofText = document.getElementById('proofText');
+  const proofPhoto = document.getElementById('proofPhoto');
+  const proofClose = document.getElementById('proofClose');
+  let lastFocused = null;
+
+  function placeholderMarkup(path){
+    return `<div class="proof-placeholder">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/>
+        <circle cx="12" cy="13" r="3.5"/>
+      </svg>
+      <span>Add a photo or certificate here</span>
+      <code>${path}</code>
+    </div>`;
+  }
+
+  function openProof(id){
+    const d = PROOF_DATA[id];
+    if (!d) return;
+    proofTag.textContent = d.tag;
+    proofTitle.textContent = d.title;
+    proofText.textContent = d.text;
+    proofPhoto.innerHTML = placeholderMarkup(d.img);
+
+    const img = new Image();
+    img.alt = d.title;
+    img.onload = () => { proofPhoto.innerHTML = ''; proofPhoto.appendChild(img); };
+    img.onerror = () => { /* keep placeholder already shown */ };
+    img.src = d.img;
+
+    lastFocused = document.activeElement;
+    overlay.classList.add('open');
+    proofClose.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function closeProof(){
+    overlay.classList.remove('open');
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function onKeydown(e){
+    if (e.key === 'Escape') closeProof();
+  }
+
+  document.querySelectorAll('[data-proof]').forEach(el => {
+    el.addEventListener('click', () => openProof(el.getAttribute('data-proof')));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openProof(el.getAttribute('data-proof'));
       }
     });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
+  });
+
+  proofClose.addEventListener('click', closeProof);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeProof(); });
 </script>
 
 </body>
