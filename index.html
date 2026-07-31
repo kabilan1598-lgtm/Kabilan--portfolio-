@@ -8,20 +8,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-    --ink:#0F172A;
-    --ink-2:#1E293B;
-    --panel:#1E293B;
-    --panel-2:#334155;
-    --border:#475569;
-    --accent:#3B82F6;
-    --accent-dim:#2563EB;
-    --warm:#F97316;
-    --warm-dim:#7C2D12;
-    --heading:#FACC15;
-    --text:#F8FAFC;
-    --text-muted:#CBD5E1;
-    --text-faint:#94A3B8;
+  :root{
+    --ink:#08090b;
+    --ink-2:#0d1013;
+    --panel:#141a1f;
+    --panel-2:#191f25;
+    --border:#262e35;
+    --accent:#45d9a8;
+    --accent-dim:#2a5a4c;
+    --warm:#ff8a50;
+    --warm-dim:#5c3320;
+    --heading:#f2b134;
+    --text:#f6f8f9;
+    --text-muted:#d3d9dd;
+    --text-faint:#a7afb6;
     --mono: 'JetBrains Mono', monospace;
     --disp: 'Space Grotesk', sans-serif;
     --body: 'Inter', sans-serif;
@@ -84,11 +84,18 @@
     overflow:hidden; font-family:var(--mono); font-size:11.5px; flex-shrink:0;
   }
   .mode-switch button{
+    position:relative; overflow:hidden; isolation:isolate;
     padding:8px 16px; background:none; border:none; color:var(--text-muted);
-    cursor:pointer; transition:all .2s ease; white-space:nowrap;
+    cursor:pointer; transition:color .2s ease, background .25s ease, transform .15s ease; white-space:nowrap;
   }
-  .mode-switch button.active[data-mode="software"]{background:var(--accent); color:#08090b; font-weight:600;}
-  .mode-switch button.active[data-mode="hardware"]{background:var(--warm); color:#08090b; font-weight:600;}
+  .mode-switch button:active{transform:scale(0.94);}
+  .mode-switch button.active[data-mode="software"]{background:var(--accent); color:#08090b; font-weight:600; animation:modePop .35s cubic-bezier(.34,1.56,.64,1);}
+  .mode-switch button.active[data-mode="hardware"]{background:var(--warm); color:#08090b; font-weight:600; animation:modePop .35s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes modePop{
+    0%{transform:scale(0.85);}
+    60%{transform:scale(1.06);}
+    100%{transform:scale(1);}
+  }
 
   @media (max-width:880px){
     nav{row-gap:12px;}
@@ -177,13 +184,28 @@
 
   .btn-row{display:flex; gap:14px; flex-wrap:wrap;}
   .btn{
+    position:relative; overflow:hidden; isolation:isolate;
     font-family:var(--mono); font-size:13px; padding:12px 22px; border-radius:4px;
-    border:1px solid var(--border); transition:all .2s ease; display:inline-block;
+    border:1px solid var(--border); transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+    display:inline-block; will-change:transform;
   }
   .btn.primary{background:var(--accent); color:#08090b; border-color:var(--accent); font-weight:600;}
-  .btn.primary:hover{background:#6be6c3;}
+  .btn.primary:hover{background:#6be6c3; transform:translateY(-2px); box-shadow:0 10px 26px -10px rgba(69,217,168,0.55);}
+  .btn.primary:active{transform:translateY(0) scale(0.95);}
   .btn.ghost{color:var(--text); }
-  .btn.ghost:hover{border-color:var(--accent); color:var(--accent);}
+  .btn.ghost:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px); box-shadow:0 10px 26px -14px rgba(69,217,168,0.35);}
+  .btn.ghost:active{transform:translateY(0) scale(0.95);}
+  .ripple{
+    position:absolute; border-radius:50%; pointer-events:none;
+    background:rgba(255,255,255,0.55); transform:scale(0); opacity:0.7; z-index:2;
+    animation:rippleOut .6s ease-out forwards;
+  }
+  @keyframes rippleOut{
+    to{transform:scale(2.6); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ripple{display:none;}
+  }
 
   /* ---------- SECTION HEAD ---------- */
   .sec-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:44px; flex-wrap:wrap; gap:10px;}
@@ -292,16 +314,20 @@
     display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:18px;
   }
   .contact-card{
+    position:relative; overflow:hidden; isolation:isolate;
     display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px;
     border:1px solid var(--border); background:var(--panel); border-radius:10px;
-    padding:28px 18px; transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    padding:28px 18px; transition:transform .25s cubic-bezier(.34,1.56,.64,1), border-color .2s ease, box-shadow .2s ease;
+    will-change:transform;
   }
   .contact-card:hover, .contact-card:focus-visible{
-    transform:translateY(-4px); border-color:var(--border); box-shadow:0 10px 24px -14px rgba(18,24,31,0.18);
+    transform:translateY(-6px) scale(1.02); border-color:var(--accent-dim); box-shadow:0 14px 30px -16px rgba(69,217,168,0.35);
   }
+  .contact-card:active{transform:translateY(-2px) scale(0.97);}
+  .contact-card:hover .contact-icon{transform:scale(1.12) rotate(-6deg);}
   .contact-icon{
     width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    color:#ffffff; flex-shrink:0;
+    color:#ffffff; flex-shrink:0; transition:transform .3s cubic-bezier(.34,1.56,.64,1);
   }
   .contact-icon svg{width:23px; height:23px;}
   .contact-icon.email{background:linear-gradient(135deg,#ff6a3d,#ea4335);}
@@ -329,40 +355,75 @@
 
   /* ---------- PROOF TRIGGERS ---------- */
   .soft-chip.proof-trigger{
+    position:relative; overflow:hidden; isolation:isolate;
     cursor:pointer; display:inline-flex; align-items:center; gap:7px;
-    transition:border-color .2s ease, color .2s ease, background .2s ease;
+    transition:border-color .2s ease, color .2s ease, background .2s ease, transform .18s cubic-bezier(.34,1.56,.64,1);
+    will-change:transform;
   }
   .soft-chip.proof-trigger:hover, .soft-chip.proof-trigger:focus-visible{
     border-color:var(--accent); color:var(--accent); background:rgba(69,217,168,0.06);
+    transform:translateY(-2px);
   }
+  .soft-chip.proof-trigger:active{transform:translateY(0) scale(0.92);}
   .soft-chip.proof-trigger::after{
     content:'⌕'; font-size:13px; color:var(--text-faint); transition:color .2s ease;
   }
   .soft-chip.proof-trigger:hover::after{color:var(--accent);}
 
   .proof-btn{
+    position:relative; overflow:hidden; isolation:isolate;
     margin-top:6px; display:inline-flex; align-items:center; gap:8px;
     font-family:var(--mono); font-size:11.5px; color:var(--accent);
     background:none; border:1px solid var(--accent-dim); padding:8px 14px;
-    border-radius:4px; cursor:pointer; transition:background .2s ease, color .2s ease;
+    border-radius:4px; cursor:pointer;
+    transition:background .2s ease, color .2s ease, transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, border-color .2s ease;
+    will-change:transform;
   }
-  .proof-btn:hover, .proof-btn:focus-visible{background:rgba(69,217,168,0.1); color:#8be9c9;}
-  .proof-btn::after{content:'⌕';}
+  .proof-btn:hover, .proof-btn:focus-visible{background:rgba(69,217,168,0.1); color:#8be9c9; border-color:var(--accent); box-shadow:0 8px 20px -12px rgba(69,217,168,0.6); transform:translateY(-2px);}
+  .proof-btn:active{transform:translateY(0) scale(0.93);}
+  .proof-btn::after{content:'⌕'; display:inline-block; transition:transform .3s ease;}
+  .proof-btn:hover::after{transform:rotate(18deg) scale(1.15);}
 
   .award-card{cursor:default;}
   .award-card .proof-btn{margin-top:14px;}
 
   /* ---------- PROOF MODAL ---------- */
   .proof-overlay{
-    position:fixed; inset:0; z-index:100; display:none;
+    position:fixed; inset:0; z-index:100; display:flex;
     align-items:center; justify-content:center; padding:5vw;
-    background:rgba(6,9,13,0.78); backdrop-filter:blur(6px);
+    background:rgba(6,9,13,0); backdrop-filter:blur(0px);
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .35s ease, background .35s ease, backdrop-filter .35s ease, visibility 0s linear .35s;
+    perspective:1200px;
   }
-  .proof-overlay.open{display:flex;}
+  .proof-overlay.open{
+    opacity:1; visibility:visible; pointer-events:auto;
+    background:rgba(6,9,13,0.78); backdrop-filter:blur(6px);
+    transition:opacity .35s ease, background .35s ease, backdrop-filter .35s ease, visibility 0s linear 0s;
+  }
   .proof-modal{
     position:relative; width:min(560px, 100%); max-height:86vh; overflow-y:auto;
     background:var(--panel); border:1px solid var(--border); border-radius:6px;
     padding:40px 36px;
+    opacity:0; transform:scale(0.82) rotateX(8deg) translateY(30px); filter:blur(6px);
+    transform-origin:center bottom;
+    transition:opacity .38s cubic-bezier(.22,1,.36,1), transform .38s cubic-bezier(.22,1,.36,1), filter .38s ease;
+    box-shadow:0 0 0 rgba(69,217,168,0);
+  }
+  .proof-overlay.open .proof-modal{
+    opacity:1; transform:scale(1) rotateX(0) translateY(0); filter:blur(0);
+    box-shadow:0 30px 70px -20px rgba(0,0,0,0.55), 0 0 40px -10px rgba(69,217,168,0.15);
+  }
+  .proof-modal::before{
+    content:''; position:absolute; inset:0; border-radius:6px; padding:1px;
+    background:linear-gradient(120deg, var(--accent), transparent 35%, transparent 65%, var(--warm));
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .5s ease .1s; pointer-events:none;
+  }
+  .proof-overlay.open .proof-modal::before{opacity:0.6;}
+  @media (prefers-reduced-motion: reduce){
+    .proof-modal, .proof-overlay{transition:none; filter:none; transform:none;}
   }
   .proof-modal .corner{width:16px; height:16px;}
   .proof-close{
@@ -393,7 +454,73 @@
     font-family:var(--mono); font-size:10.5px; color:var(--text-faint);
     background:var(--ink-2); padding:4px 8px; border-radius:3px;
   }
+  .proof-photo.has-gallery{border:none; min-height:0; padding:0; background:none; display:block;}
   #proofText{color:var(--text-muted); font-size:14.5px;}
+  .proof-modal.wide{width:min(760px, 100%);}
+  .proof-gallery{margin-bottom:22px;}
+  .proof-gallery-main{
+    position:relative; width:100%; aspect-ratio:16/10; border-radius:6px; overflow:hidden;
+    border:1px dashed var(--border); background:var(--panel-2);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .proof-gallery-main img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    animation:galleryFade .3s ease;
+  }
+  @keyframes galleryFade{from{opacity:0; transform:scale(1.03);} to{opacity:1; transform:scale(1);}}
+  .gallery-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+    width:36px; height:36px; border-radius:50%; border:1px solid var(--border);
+    background:rgba(8,9,11,0.65); backdrop-filter:blur(4px); color:var(--text);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:background .2s ease, border-color .2s ease, transform .2s cubic-bezier(.34,1.56,.64,1);
+  }
+  .gallery-arrow:hover{border-color:var(--accent); color:var(--accent); background:rgba(69,217,168,0.12);}
+  .gallery-arrow:active{transform:translateY(-50%) scale(0.88);}
+  .gallery-arrow.prev{left:10px;}
+  .gallery-arrow.next{right:10px;}
+  .gallery-counter{
+    position:absolute; bottom:10px; right:10px; z-index:3;
+    font-family:var(--mono); font-size:11px; color:var(--text);
+    background:rgba(8,9,11,0.65); backdrop-filter:blur(4px);
+    border:1px solid var(--border); padding:3px 9px; border-radius:20px;
+  }
+  .proof-gallery-thumbs{
+    display:flex; gap:8px; margin-top:10px; overflow-x:auto; padding-bottom:4px;
+    scrollbar-width:thin;
+  }
+  .proof-gallery-thumbs::-webkit-scrollbar{height:5px;}
+  .proof-gallery-thumbs::-webkit-scrollbar-thumb{background:var(--border); border-radius:4px;}
+  .gallery-thumb{
+    flex:0 0 auto; width:56px; height:56px; border-radius:4px; overflow:hidden;
+    border:2px solid var(--border); background:var(--panel-2); cursor:pointer; padding:0;
+    transition:border-color .2s ease, transform .15s ease;
+  }
+  .gallery-thumb img{width:100%; height:100%; object-fit:cover; display:block; opacity:0.6; transition:opacity .2s ease;}
+  .gallery-thumb:hover{transform:translateY(-2px);}
+  .gallery-thumb:hover img{opacity:0.9;}
+  .gallery-thumb.active{border-color:var(--accent);}
+  .gallery-thumb.active img{opacity:1;}
+  .gallery-thumb.missing{display:none;}
+  @media (prefers-reduced-motion: reduce){
+    .proof-gallery-main img{animation:none;}
+  }
+
+  .proof-tag, #proofTitle, .proof-photo, #proofText{
+    opacity:0; transform:translateY(14px);
+    transition:opacity .4s ease, transform .4s cubic-bezier(.22,1,.36,1);
+  }
+  .proof-overlay.open .proof-tag{transition-delay:.08s;}
+  .proof-overlay.open #proofTitle{transition-delay:.14s;}
+  .proof-overlay.open .proof-photo{transition-delay:.2s;}
+  .proof-overlay.open #proofText{transition-delay:.26s;}
+  .proof-overlay.open .proof-tag,
+  .proof-overlay.open #proofTitle,
+  .proof-overlay.open .proof-photo,
+  .proof-overlay.open #proofText{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .proof-tag, #proofTitle, .proof-photo, #proofText{opacity:1; transform:none; transition:none;}
+  }
 </style>
 </head>
 <body>
@@ -402,7 +529,7 @@
 <div class="wrap">
 
 <nav>
-  <div class="logo">Kabln<span>.</span>dev</div>
+  <div class="logo">kabilan<span>.</span>dev</div>
   <div class="tabs" id="tabs">
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
@@ -434,12 +561,12 @@
     <h1 class="name" id="heroName">KABILAN S</h1>
     <div class="swipe-zone" data-swipe="hero">
       <div class="panel panel-software is-active">
-        <p class="role-line">Electronics &amp; Communication Engineering student who builds backend-leaning software — <strong>Java</strong> and <strong>Python</strong> systems, data pipelines, and computer-vision platforms like a real-time ANPR system.</p>
+        <p class="role-line">Electronics &amp; Communication Engineering student who builds backend-leaning software — <strong>Python</strong> and <strong>Java</strong> systems, data pipelines, and computer-vision platforms like a real-time ANPR system.</p>
       </div>
       <div class="panel panel-hardware">
-        <p class="role-line">Electronics &amp; Communication Engineering student passionate about embedded systems and hardware development. Experienced in <strong>Arduino</strong>, <strong>IoT</strong>, microcontrollers, sensor integration, and Embedded C, with a focus on building practical and reliable engineering solutions.</p>
+        <p class="role-line">Electronics &amp; Communication Engineering student who builds hands-on hardware — <strong>Arduino</strong>-based robotics, sensor integration, motor control, and real industrial control-system exposure from a thermal power station internship.</p>
       </div>
-      <span class="swipe-hint"> ⇄ </span>
+      <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
     </div>
 
     <div class="hero-meta">
@@ -491,6 +618,7 @@
       <li>Observed boilers, turbines, generators, transformers, and control systems.</li>
       <li>Learned industrial safety practices, equipment maintenance, and power plant monitoring.</li>
     </ul>
+    <button class="proof-btn" data-proof="nctp">View proof</button>
   </div>
 
   <div class="log-entry reveal">
@@ -531,10 +659,10 @@
       <span class="tag">Twilio</span><span class="tag">Cloudinary</span><span class="tag">Tkinter</span>
     </div>
     <ul style="list-style:none; color:var(--text-muted); font-size:14.5px; display:flex; flex-direction:column; gap:6px; margin-bottom:16px;">
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Automatic entry/exit logging with timestamp and GPS coordinates, exported to CSV.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>WhatsApp alerts via Twilio and email notifications with image attachments for blocked vehicles.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Captured vehicle images stored on Cloudinary for remote access.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Streamlit analytics dashboard for vehicle statistics, entry/exit logs, and reports.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Automatic entry/exit logging with timestamp and GPS coordinates, exported to CSV.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>WhatsApp alerts via Twilio and email notifications with image attachments for blocked vehicles.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Captured vehicle images stored on Cloudinary for remote access.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Streamlit analytics dashboard for vehicle statistics, entry/exit logs, and reports.</li>
     </ul>
     <div class="log-line">
       <span>ENTRY <b>2025-12-01 14:32:07</b></span>
@@ -589,7 +717,7 @@
 &nbsp;&nbsp;<span class="k">"industrial_exposure"</span>: [<span class="s">"Boilers & Turbines"</span>, <span class="s">"Generators & Transformers"</span>, <span class="s">"Control Systems"</span>, <span class="s">"Industrial Safety Practices"</span>, <span class="s">"Equipment Monitoring"</span>]<br>
 <span class="p">}</span></div>
       </div>
-      <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
+      <span class="swipe-hint"> ⇄ </span>
     </div>
     <div class="soft-row">
       <span class="soft-chip proof-trigger" data-proof="leadership" role="button" tabindex="0">Leadership</span>
@@ -597,6 +725,7 @@
       <span class="soft-chip proof-trigger" data-proof="time" role="button" tabindex="0">Time Management</span>
       <span class="soft-chip proof-trigger" data-proof="adaptability" role="button" tabindex="0">Adaptability</span>
       <span class="soft-chip proof-trigger" data-proof="quicklearn" role="button" tabindex="0">Quick Learner</span>
+      <span class="soft-chip proof-trigger" data-proof="placement" role="button" tabindex="0">Placement Coordinator</span>
     </div>
     <p style="font-family:var(--mono); font-size:11.5px; color:var(--text-faint); margin-top:14px;">⌕ tap a skill to see proof</p>
   </div>
@@ -610,7 +739,7 @@
     <div class="edu-card">
       <div>
         <h3>Bachelor of Engineering — Electronics &amp; Communication Engineering</h3>
-        <span class="org">Velammal Engineering College, Surapet, Chennai</span>
+        <span class="org">Velammal Engineering College, Surapet, Chennai - 600066.</span>
       </div>
       <span class="edu-time">09/2023 – 05/2027</span>
     </div>
@@ -703,13 +832,14 @@
   </div>
 </section>
 
-<footer>Copyright © 2026 KABILAN S — Backend Developer.</footer>
+<footer>© 2026 KABILAN S — built with intent, not a template.</footer>
 </div>
 
 <div class="proof-overlay" id="proofOverlay">
-  <div class="proof-modal" role="dialog" aria-modal="true" aria-labelledby="proofTitle">
+  <div class="proof-modal" id="proofModal" role="dialog" aria-modal="true" aria-labelledby="proofTitle">
     <span class="corner tl"></span><span class="corner tr"></span>
     <span class="corner bl"></span><span class="corner br"></span>
+    <span class="scan-line" id="modalScan" style="animation:none;"></span>
     <button class="proof-close" id="proofClose" aria-label="Close">✕</button>
     <span class="proof-tag" id="proofTag"></span>
     <h3 id="proofTitle"></h3>
@@ -719,7 +849,11 @@
 </div>
 
 <script>
+  // ============================================================
   // ANIMATED NODE-NETWORK BACKGROUND
+  // Particles drift slowly in random directions and wrap around
+  // the screen edges; lines are drawn between nearby particles.
+  // ============================================================
   (function(){
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
@@ -812,7 +946,9 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
 <script>
-  // ANIME.JS ENHANCEMENTS 
+  // ============================================================
+  // ANIME.JS ENHANCEMENTS (with safe fallback if the CDN fails)
+  // ============================================================
   const revealEls = document.querySelectorAll('.reveal');
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -871,7 +1007,9 @@
     revealEls.forEach(el => io.observe(el));
   }
 
+  // ============================================================
   // SOFTWARE / HARDWARE MODE SWITCH
+  // ============================================================
   let currentMode = 'software';
   const modeButtons = document.querySelectorAll('#modeSwitch button');
 
@@ -889,6 +1027,7 @@
 
   modeButtons.forEach(btn => btn.addEventListener('click', () => setMode(btn.getAttribute('data-mode'))));
 
+  // swipe gesture on each swipe-zone: swipe right -> hardware, swipe left -> software
   document.querySelectorAll('[data-swipe]').forEach(zone => {
     let startX = 0, startY = 0, tracking = false;
     zone.addEventListener('touchstart', (e) => {
@@ -907,83 +1046,206 @@
     }, { passive: true });
   });
 
+  // ============================================================
   // PROOF SYSTEM
+  // To attach your own photo or certificate scan to any item below,
+  // just change its "img" path to point at your own file, e.g.
+  // put images in an /assets/proof/ folder next to this file and
+  // set img: "assets/proof/leadership.jpg". If a file isn't found,
+  // a placeholder is shown automatically — nothing breaks.
+  // ============================================================
+  // Generates ['assets/proof/anpr/01.jpg', 'assets/proof/anpr/02.jpg', ...]
+  // so you can just drop numbered files in a folder — any that don't
+  // exist are silently skipped, so it's fine to have fewer than `count`.
+  function numberedImages(folder, count, ext = 'jpg'){
+    return Array.from({ length: count }, (_, i) =>
+      `${folder}/${String(i + 1).padStart(2, '0')}.${ext}`
+    );
+  }
+
   const PROOF_DATA = {
     leadership: {
       tag: 'SOFT SKILL — LEADERSHIP',
       title: 'Leadership',
-      text: 'Took the lead on designing and presenting the Multi-Mode Autonomous Robot at the CIT National Level Symposium — planning the build, dividing tasks, and speaking to the judging panel. Replace this with your own specific story and add a photo from the event.',
-      img: 'assets/proof/leadership.jpg'
+      text: 'Replace this with your YRC (Youth Red Cross) leadership story — what your role was and what you led.',
+      // PROOF NAME: leadership  →  replace the filename below
+      img: 'assets/leadership.jpg'
     },
     teamwork: {
       tag: 'SOFT SKILL — TEAMWORK',
       title: 'Teamwork',
       text: 'Worked alongside peers during the Data Science internship at DLK Software Solutions, splitting up preprocessing and analysis work on shared datasets. Swap in a specific example and a team photo here.',
-      img: 'assets/proof/teamwork.jpg'
+      // PROOF NAME: teamwork  →  replace the filename below
+      img: 'assets/teamwork.jpg'
     },
     time: {
       tag: 'SOFT SKILL — TIME MANAGEMENT',
       title: 'Time Management',
       text: 'Delivered two internships and two independent projects — the Autonomous Robot and the ANPR system — inside a single academic year, each with its own fixed deadline. Add a screenshot of a project timeline or planner here.',
-      img: 'assets/proof/time-management.jpg'
+      // PROOF NAME: time  →  replace the filename below
+      img: 'assets/time-management.jpg'
     },
     adaptability: {
       tag: 'SOFT SKILL — ADAPTABILITY',
       title: 'Adaptability',
       text: 'Moved between hardware-first robotics work (Arduino, sensors, motor control) and software-first computer vision development (Python, YOLOv8, OpenCV) — picking up each toolchain as the project demanded. Add a photo of you working across either setup.',
+      // PROOF NAME: adaptability  →  replace the filename below
       img: 'assets/proof/adaptability.jpg'
     },
     quicklearn: {
       tag: 'SOFT SKILL — QUICK LEARNER',
       title: 'Quick Learner',
       text: 'Completed the NPTEL "Python for Data Science" certification and put it to direct use in the same year — during the DLK Software Solutions internship. Add your certificate image here as proof.',
+      // PROOF NAME: quicklearn  →  replace the filename below
       img: 'assets/proof/quick-learner.jpg'
+    },
+    placement: {
+      tag: 'ROLE — PLACEMENT COORDINATOR',
+      title: 'Placement Coordinator',
+      text: 'Replace this with a description of your Placement Coordinator role — what you were responsible for and who you coordinated with.',
+      // PROOF NAME: placement  →  replace the filename below
+      img: 'assets/proof/placement.jpg'
     },
     anpr: {
       tag: 'PROJECT — 12/2025 – 04/2026',
       title: 'AI-Based Smart Bus Entry & Exit Monitoring System',
-      text: 'A real-time ANPR pipeline: YOLOv8 detects plates, EasyOCR reads them, and a CSV-backed authentication layer tags each vehicle Allowed, Blocked, or Unknown — with Twilio/WhatsApp and email alerts, Cloudinary image storage, and a Streamlit analytics dashboard. Add a screenshot of the dashboard or a demo GIF here.',
-      img: 'assets/proof/anpr-demo.jpg'
+      text: 'A real-time ANPR pipeline: YOLOv8 detects plates, EasyOCR reads them, and a CSV-backed authentication layer tags each vehicle Allowed, Blocked, or Unknown — with Twilio/WhatsApp and email alerts, Cloudinary image storage, and a Streamlit analytics dashboard. Swipe or use the arrows to browse the gallery.',
+      // PROOF NAME: anpr  →  replace files in assets/proof/anpr/
+      // named 01.jpg, 02.jpg, 03.jpg ... 13.jpg — any numbers you
+      // don't have are skipped automatically.
+      images: numberedImages('assets/proof/anpr', 13)
+    },
+    nctp: {
+      tag: 'INTERNSHIP — 20.11.2025 – 10.12.2025',
+      title: 'Intern, North Chennai Thermal Power Station — Stage II',
+      text: 'A 19-day in-plant training at NCTPS Stage-II (TANGEDCO/TNPGCL) covering real-time industrial systems, electrical protection, automation, and safety practices — gaining hands-on exposure that reinforced core engineering concepts and readiness for higher studies. Includes the completion certificate, department feedback form, and a photo from the site visit.',
+      // PROOF NAME: nctp  →  replace files in assets/proof/nctp/
+      // named 01.jpg through 05.jpg (currently: certificate, feedback
+      // form pages, site-visit photo, in that order).
+      images: numberedImages('assets/proof/nctp', 5)
     },
     robot: {
       tag: 'PROJECT — 04/2025 – 05/2025',
       title: 'Multi-Mode Autonomous Robot',
       text: 'A 4-mode Arduino robot switching between obstacle avoidance, line following, hybrid navigation, and object tracking — built and presented as a paper at the CIT National Level Symposium. Add a build photo or the presentation slide here.',
+      // PROOF NAME: robot  →  replace the filename below
       img: 'assets/proof/robot-demo.jpg'
     },
     'award-robot': {
       tag: 'PAPER PRESENTATION',
       title: 'Multi-Mode Autonomous Robot — CIT Symposium',
       text: 'Participation certificate from the National Level Symposium at CIT for the Multi-Mode Autonomous Robot paper. Add a scan or photo of the certificate here.',
+      // PROOF NAME: award-robot  →  replace the filename below
       img: 'assets/proof/cert-cit.jpg'
     },
     'award-boiler': {
       tag: 'PAPER PRESENTATION',
       title: 'Safety Interlock System for Boiler Protection — Loyola–ICAM',
       text: 'Participation certificate from the National Level Symposium at Loyola–ICAM for the Safety Interlock System for Boiler Protection paper. Add a scan or photo of the certificate here.',
+      // PROOF NAME: award-boiler  →  replace the filename below
       img: 'assets/proof/cert-loyola-icam.jpg'
     },
     'award-nptel': {
       tag: 'CERTIFICATION',
       title: 'Python for Data Science — NPTEL',
       text: 'Online certification from NPTEL covering Python for Data Science. Add your certificate PDF screenshot or image here.',
+      // PROOF NAME: award-nptel  →  replace the filename below
       img: 'assets/proof/cert-nptel.jpg'
     },
     'award-slice': {
       tag: 'E-CERTIFICATIONS',
       title: 'Slice v25',
       text: 'Certificates from Slice v25: Codex, Byte the Bomb, Astrologiq, Cipher Odyssey, Hypothesis Hub, and Circuit Wars. Add scans of each certificate, or a combined image, here.',
+      // PROOF NAME: award-slice  →  replace the filename below
       img: 'assets/proof/cert-slice-v25.jpg'
     }
   };
 
+  // ============================================================
+  // RIPPLE CLICK EFFECT — applied to every button-like element
+  // ============================================================
+  function addRipple(e){
+    const el = e.currentTarget;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = el.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 1.4;
+    const x = (e.clientX ?? (rect.left + rect.width / 2)) - rect.left - size / 2;
+    const y = (e.clientY ?? (rect.top + rect.height / 2)) - rect.top - size / 2;
+    const span = document.createElement('span');
+    span.className = 'ripple';
+    span.style.width = span.style.height = size + 'px';
+    span.style.left = x + 'px';
+    span.style.top = y + 'px';
+    el.appendChild(span);
+    span.addEventListener('animationend', () => span.remove());
+  }
+  document.querySelectorAll('.btn, .proof-btn, .soft-chip.proof-trigger, .mode-switch button, .contact-card')
+    .forEach(el => el.addEventListener('click', addRipple));
+
   const overlay = document.getElementById('proofOverlay');
+  const proofModal = document.getElementById('proofModal');
   const proofTag = document.getElementById('proofTag');
   const proofTitle = document.getElementById('proofTitle');
   const proofText = document.getElementById('proofText');
   const proofPhoto = document.getElementById('proofPhoto');
   const proofClose = document.getElementById('proofClose');
   let lastFocused = null;
+  let galleryState = { images: [], index: 0 };
+
+  function preload(src){
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => resolve(src);
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+  }
+
+  function buildGalleryMarkup(){
+    const total = galleryState.images.length;
+    const thumbs = galleryState.images.map((src, i) =>
+      `<button class="gallery-thumb${i === galleryState.index ? ' active' : ''}" data-i="${i}" aria-label="Photo ${i + 1} of ${total}"><img src="${src}" alt=""></button>`
+    ).join('');
+    proofPhoto.innerHTML = `
+      <div class="proof-gallery">
+        <div class="proof-gallery-main">
+          <img src="${galleryState.images[galleryState.index]}" alt="">
+          ${total > 1 ? `<button class="gallery-arrow prev" aria-label="Previous photo">‹</button>
+          <button class="gallery-arrow next" aria-label="Next photo">›</button>` : ''}
+          <span class="gallery-counter">${galleryState.index + 1} / ${total}</span>
+        </div>
+        ${total > 1 ? `<div class="proof-gallery-thumbs">${thumbs}</div>` : ''}
+      </div>`;
+    wireGalleryEvents();
+  }
+
+  function stepGallery(dir){
+    const total = galleryState.images.length;
+    if (!total) return;
+    galleryState.index = (galleryState.index + dir + total) % total;
+    buildGalleryMarkup();
+  }
+
+  function wireGalleryEvents(){
+    const main = proofPhoto.querySelector('.proof-gallery-main');
+    proofPhoto.querySelectorAll('.gallery-arrow.prev').forEach(b => b.addEventListener('click', () => stepGallery(-1)));
+    proofPhoto.querySelectorAll('.gallery-arrow.next').forEach(b => b.addEventListener('click', () => stepGallery(1)));
+    proofPhoto.querySelectorAll('.gallery-thumb').forEach(b => b.addEventListener('click', () => {
+      galleryState.index = parseInt(b.getAttribute('data-i'), 10);
+      buildGalleryMarkup();
+    }));
+    // swipe left/right to browse, matching the swipe gesture used elsewhere on the page
+    if (main) {
+      let startX = 0, tracking = false;
+      main.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; tracking = true; }, { passive: true });
+      main.addEventListener('touchend', (e) => {
+        if (!tracking) return;
+        tracking = false;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) stepGallery(dx > 0 ? -1 : 1);
+      }, { passive: true });
+    }
+  }
 
   function placeholderMarkup(path){
     return `<div class="proof-placeholder">
@@ -1000,30 +1262,68 @@
     const d = PROOF_DATA[id];
     if (!d) return;
     proofTag.textContent = d.tag;
-    proofTitle.textContent = d.title;
     proofText.textContent = d.text;
-    proofPhoto.innerHTML = placeholderMarkup(d.img);
 
-    const img = new Image();
-    img.alt = d.title;
-    img.onload = () => { proofPhoto.innerHTML = ''; proofPhoto.appendChild(img); };
-    img.onerror = () => { /* keep placeholder already shown */ };
-    img.src = d.img;
+    const isGallery = Array.isArray(d.images);
+    proofModal.classList.toggle('wide', isGallery);
+    proofPhoto.classList.toggle('has-gallery', isGallery);
+
+    if (isGallery) {
+      proofPhoto.innerHTML = `<div class="proof-placeholder"><span>Loading gallery…</span></div>`;
+      Promise.all(d.images.map(preload)).then(results => {
+        const valid = results.filter(Boolean);
+        if (!valid.length) {
+          proofPhoto.innerHTML = placeholderMarkup(d.images[0]);
+          return;
+        }
+        galleryState = { images: valid, index: 0 };
+        buildGalleryMarkup();
+      });
+    } else {
+      proofPhoto.innerHTML = placeholderMarkup(d.img);
+      const img = new Image();
+      img.alt = d.title;
+      img.onload = () => { proofPhoto.innerHTML = ''; proofPhoto.appendChild(img); };
+      img.onerror = () => { /* keep placeholder already shown */ };
+      img.src = d.img;
+    }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof anime !== 'undefined' && !reduceMotion) {
+      const { animate, scrambleText } = anime;
+      proofTitle.textContent = d.title;
+      animate(proofTitle, { innerHTML: scrambleText(), duration: 700, ease: 'outExpo' });
+    } else {
+      proofTitle.textContent = d.title;
+    }
 
     lastFocused = document.activeElement;
     overlay.classList.add('open');
     proofClose.focus();
     document.addEventListener('keydown', onKeydown);
+
+    // retrigger the scan-line sweep across the modal every time it opens
+    const modalScan = document.getElementById('modalScan');
+    if (modalScan && !reduceMotion) {
+      modalScan.style.animation = 'none';
+      void modalScan.offsetWidth; // force reflow so the animation restarts
+      modalScan.style.animation = 'scan 1.1s ease-in-out .25s 1';
+    }
   }
 
   function closeProof(){
     overlay.classList.remove('open');
     document.removeEventListener('keydown', onKeydown);
     if (lastFocused) lastFocused.focus();
+    galleryState = { images: [], index: 0 };
   }
 
   function onKeydown(e){
     if (e.key === 'Escape') closeProof();
+    if (proofModal.classList.contains('wide')) {
+      if (e.key === 'ArrowLeft') stepGallery(-1);
+      if (e.key === 'ArrowRight') stepGallery(1);
+    }
   }
 
   document.querySelectorAll('[data-proof]').forEach(el => {
