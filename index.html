@@ -1117,7 +1117,34 @@ YRC has inspired me to lead with responsibility, serve with compassion, and cont
     anpr: {
       tag: 'PROJECT — 12/2025 – 04/2026',
       title: 'AI-Based Smart Bus Entry & Exit Monitoring System',
-      text: 'A real-time ANPR pipeline: YOLOv8 detects plates, EasyOCR reads them, and a CSV-backed authentication layer tags each vehicle Allowed, Blocked, or Unknown — with Twilio/WhatsApp and email alerts, Cloudinary image storage, and a Streamlit analytics dashboard. Swipe or use the arrows to browse the gallery.',
+      text: '🚍 AI Smart Bus Entry & Exit Monitoring System
+
+The AI Smart Bus Entry & Exit Monitoring System is a desktop-based vehicle monitoring application developed to automate the process of identifying, tracking, and managing vehicles entering and exiting a restricted area such as a college campus, company premises, or bus depot. The primary goal of this project is to reduce manual verification, improve security, and maintain accurate vehicle movement records using Computer Vision and Optical Character Recognition (OCR).
+
+The system uses a live camera feed to capture vehicle images in real time. OpenCV is used for image acquisition and processing, while EasyOCR extracts the vehicle registration number from the captured frame. The detected number plate is cleaned and formatted before being compared with a locally stored vehicle database containing allowed and blocked vehicles.
+
+When a vehicle is detected, the system automatically verifies its status. If the vehicle is registered as Allowed, the entry or exit is recorded along with the date, time, and movement type. If the vehicle is marked as Blocked, the system immediately captures an image of the vehicle, stores it locally, uploads it to Cloudinary for secure cloud storage, and sends instant notifications through both Email and WhatsApp using SMTP and Twilio APIs. This enables security personnel to respond quickly to unauthorized vehicle access.
+
+A desktop dashboard developed using Tkinter provides a simple and interactive interface to monitor vehicle details in real time. The dashboard displays the detected vehicle number, current date and time, vehicle status, and movement direction. Every detection is automatically stored in CSV log files, creating a complete history of vehicle movements for future reference.
+
+One of the key challenges during development was improving OCR accuracy under different lighting conditions and camera angles. To overcome this, preprocessing techniques such as image filtering, text cleaning, and OCR correction logic were implemented to minimize incorrect detections and improve recognition performance. The project also includes error handling, automatic file creation, cloud upload management, and asynchronous alert mechanisms to ensure reliable execution.
+
+This project demonstrates the practical integration of Computer Vision, OCR, cloud services, and communication APIs into a real-world security application. It strengthened my understanding of Python programming, image processing, file handling, API integration, GUI development, and real-time system design. More importantly, it provided hands-on experience in developing an end-to-end application that combines software development with automation and security monitoring.
+
+Although this version is designed as a desktop application, the overall architecture can be extended into a web-based monitoring platform with centralized database management, multiple user authentication, analytics dashboards, and cloud deployment for large-scale vehicle monitoring systems.
+
+🛠️ Technologies Used
+Python
+OpenCV
+EasyOCR
+Tkinter
+Pandas
+Cloudinary
+Twilio API
+SMTP (Email)
+CSV File Handling
+Regular Expressions (Regex)
+Git & GitHub',
       // PROOF NAME: anpr  →  replace files in assets/proof/anpr/
       // named 01.jpg, 02.jpg, 03.jpg ... 13.jpg — any numbers you
       // don't have are skipped automatically.
@@ -1126,7 +1153,26 @@ YRC has inspired me to lead with responsibility, serve with compassion, and cont
     nctp: {
       tag: 'INTERNSHIP — 20.11.2025 – 10.12.2025',
       title: 'North Chennai Thermal Power Station — Stage II',
-      text: 'A 19-day in-plant training at NCTPS Stage-II (TANGEDCO/TNPGCL) covering real-time industrial systems, electrical protection, automation, and safety practices — gaining hands-on exposure that reinforced core engineering concepts and readiness for higher studies. Includes the completion certificate, department feedback form, and a photo from the site visit.',
+      text: '## North Chennai Thermal Power Station (NCTPS) Stage II
+
+**Industrial Internship | 20.11.2025 – 10.12.2025**
+
+As part of my Bachelor of Engineering in Electronics and Communication Engineering, I completed an industrial internship at **North Chennai Thermal Power Station (NCTPS) Stage II**, one of Tamil Nadu's major thermal power generation facilities operated by TANGEDCO/TNPGCL. This internship provided me with an excellent opportunity to understand the practical aspects of large-scale electricity generation and observe how engineering principles are implemented in an industrial environment. The experience allowed me to connect the theoretical concepts learned in the classroom with real-time industrial operations, making it one of the most valuable learning experiences of my academic journey.
+
+During the internship, I studied the complete thermal power generation process, beginning with coal handling and fuel preparation. I observed how coal is transported, processed, and fed into the boiler, where high-pressure steam is produced through combustion. The generated steam is then directed to the turbine, converting thermal energy into mechanical energy. The turbine drives the alternator, which converts mechanical energy into electrical energy. I also gained an understanding of how the generated electricity is stepped up using transformers before being transmitted through the switchyard to the power grid for distribution.
+
+One of the highlights of the internship was visiting different sections of the power plant, including the boiler unit, turbine hall, generator section, central control room, cooling tower, condenser unit, water treatment plant, ash handling system, and switchyard. Each visit provided insights into the purpose, construction, and operation of critical equipment used in thermal power generation. The engineers explained the working principles of boilers, turbines, generators, transformers, pumps, cooling systems, and other auxiliary equipment, enabling me to understand how each system contributes to the overall efficiency and reliability of the plant.
+
+I also gained valuable exposure to industrial instrumentation and control systems. Inside the central control room, I observed how plant parameters such as steam pressure, temperature, water level, flow rate, turbine speed, and generator output are continuously monitored and controlled using advanced instrumentation and automation systems. Learning about real-time process monitoring helped me appreciate the importance of precise measurements, control strategies, and automation in maintaining safe and efficient plant operations.
+
+The internship also emphasized the importance of industrial safety, maintenance, and operational discipline. I learned about the use of personal protective equipment (PPE), safety regulations, hazard identification, emergency response procedures, and standard operating practices followed inside the plant. The engineering team explained the significance of preventive and predictive maintenance in reducing equipment failures, improving plant reliability, and ensuring uninterrupted power generation. These practical insights helped me understand the responsibilities involved in operating and maintaining critical industrial infrastructure.
+
+Beyond technical knowledge, the internship enhanced my professional skills. Interacting with experienced engineers and technicians improved my communication abilities, technical observation, teamwork, and professional ethics. I learned how different departments coordinate effectively to achieve continuous and reliable power generation while maintaining strict safety and quality standards. Observing real industrial workflows also strengthened my problem-solving approach and gave me a better understanding of engineering practices in large-scale power plants.
+
+Overall, my internship at North Chennai Thermal Power Station Stage II was a highly rewarding experience that significantly strengthened my technical foundation. It provided me with practical exposure to thermal power generation, industrial automation, electrical systems, instrumentation, maintenance practices, and safety procedures. The internship not only reinforced my academic knowledge but also increased my confidence in applying engineering concepts to real-world industrial challenges. This experience has motivated me to continue developing my technical skills and pursue opportunities where I can contribute effectively as an engineering professional.
+
+**Portfolio Includes:** Internship Completion Certificate, Department Feedback Form, and Site Visit Photographs documenting the industrial training experience.
+',
       // PROOF NAME: nctp  →  replace files in assets/proof/nctp/
       // named 01.jpg through 05.jpg (currently: certificate, feedback
       // form pages, site-visit photo, in that order).
@@ -1152,23 +1198,37 @@ Overall, the project proved to be an effective and practical solution, showcasin
     'award-robot': {
       tag: 'PAPER PRESENTATION',
       title: 'Multi-Mode Autonomous Robot — CIT Symposium',
-      text: 'Participation certificate from the National Level Symposium at CIT for the Multi-Mode Autonomous Robot paper. Add a scan or photo of the certificate here.',
-      // PROOF NAME: award-robot  →  replace the filename below
-      img: 'assets/proof/cert-cit.jpg'
+      text: 'Paper Presentation – Loyola–ICAM College of Engineering and Technology
+
+Received a Participation Certificate for presenting the paper "Safety Interlock System for Boiler Protection" at the National Level Technical Symposium organized by Loyola–ICAM College of Engineering and Technology (LICET), Chennai. The presentation focused on a boiler safety system designed to monitor critical operating conditions and automatically activate protective mechanisms to prevent accidents, improve operational safety, and enhance the reliability of industrial boiler systems.',
+      
+      img: 'assets/cit.jpg'
     },
     'award-boiler': {
       tag: 'PAPER PRESENTATION',
       title: 'Safety Interlock System for Boiler Protection — Loyola–ICAM',
-      text: 'Participation certificate from the National Level Symposium at Loyola–ICAM for the Safety Interlock System for Boiler Protection paper. Add a scan or photo of the certificate here.',
-      // PROOF NAME: award-boiler  →  replace the filename below
+      text: 'Paper Presentation – Loyola–ICAM College of Engineering and Technology
+
+Received a Participation Certificate for presenting the paper "Safety Interlock System for Boiler Protection" at the National Level Technical Symposium organized by Loyola–ICAM College of Engineering and Technology (LICET), Chennai. The presentation focused on a boiler safety system designed to monitor critical operating conditions and automatically activate protective mechanisms to prevent accidents, improve operational safety, and enhance the reliability of industrial boiler systems.',
+      
       img: 'assets/proof/cert-loyola-icam.jpg'
     },
     'award-nptel': {
       tag: 'CERTIFICATION',
       title: 'Python for Data Science — NPTEL',
-      text: 'Online certification from NPTEL covering Python for Data Science. Add your certificate PDF screenshot or image here.',
+      text: 'NPTEL Online Certification – Python for Data Science
+
+Successfully completed the NPTEL Online Certification course "Python for Data Science", offered by the Indian Institute of Technology Madras (IIT Madras) through the SWAYAM platform during July–August 2024. Achieved a consolidated score of 55%, demonstrating a strong foundation in Python programming, data handling, and essential data science concepts. The course covered Python fundamentals, data structures, NumPy, Pandas, data visualization, and basic data analysis techniques, strengthening my programming and analytical skills for solving real-world problems.
+
+Key Highlights:
+
+Course: Python for Data Science
+Institution: IIT Madras (NPTEL – SWAYAM)
+Duration: July–August 2024 (4 Weeks)
+Consolidated Score: 55%
+Skills Gained: Python Programming, NumPy, Pandas, Data Analysis, Data Visualization, Problem Solving',
       // PROOF NAME: award-nptel  →  replace the filename below
-      img: 'assets/proof/cert-nptel.jpg'
+      img: 'assets/python.jpg'
     },
     'award-slice': {
       tag: 'E-CERTIFICATIONS',
