@@ -455,7 +455,7 @@
     background:var(--ink-2); padding:4px 8px; border-radius:3px;
   }
   .proof-photo.has-gallery{border:none; min-height:0; padding:0; background:none; display:block;}
-  #proofText{color:var(--text-muted); font-size:14.5px;}
+  #proofText{color:var(--text-muted); font-size:14.5px; white-space:pre-wrap;}
   .proof-modal.wide{width:min(760px, 100%);}
   .proof-gallery{margin-bottom:22px;}
   .proof-gallery-main{
@@ -659,10 +659,10 @@
       <span class="tag">Twilio</span><span class="tag">Cloudinary</span><span class="tag">Tkinter</span>
     </div>
     <ul style="list-style:none; color:var(--text-muted); font-size:14.5px; display:flex; flex-direction:column; gap:6px; margin-bottom:16px;">
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Automatic entry/exit logging with timestamp and GPS coordinates, exported to CSV.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>WhatsApp alerts via Twilio and email notifications with image attachments for blocked vehicles.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Captured vehicle images stored on Cloudinary for remote access.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Streamlit analytics dashboard for vehicle statistics, entry/exit logs, and reports.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Automatic entry/exit logging with timestamp and GPS coordinates, exported to CSV.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>WhatsApp alerts via Twilio and email notifications with image attachments for blocked vehicles.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Captured vehicle images stored on Cloudinary for remote access.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Streamlit analytics dashboard for vehicle statistics, entry/exit logs, and reports.</li>
     </ul>
     <div class="log-line">
       <span>ENTRY <b>2025-12-01 14:32:07</b></span>
@@ -717,7 +717,7 @@
 &nbsp;&nbsp;<span class="k">"industrial_exposure"</span>: [<span class="s">"Boilers & Turbines"</span>, <span class="s">"Generators & Transformers"</span>, <span class="s">"Control Systems"</span>, <span class="s">"Industrial Safety Practices"</span>, <span class="s">"Equipment Monitoring"</span>]<br>
 <span class="p">}</span></div>
       </div>
-      <span class="swipe-hint"> ⇄ </span>
+      <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
     </div>
     <div class="soft-row">
       <span class="soft-chip proof-trigger" data-proof="leadership" role="button" tabindex="0">Leadership</span>
@@ -739,7 +739,7 @@
     <div class="edu-card">
       <div>
         <h3>Bachelor of Engineering — Electronics &amp; Communication Engineering</h3>
-        <span class="org">Velammal Engineering College, Surapet, Chennai - 600066.</span>
+        <span class="org">Velammal Engineering College, Surapet, Chennai</span>
       </div>
       <span class="edu-time">09/2023 – 05/2027</span>
     </div>
@@ -1067,7 +1067,7 @@
     leadership: {
       tag: 'SOFT SKILL — LEADERSHIP',
       title: 'Leadership',
-      text: '4 Years of Dedicated Service in Youth Red Cross (YRC)
+      text: `4 Years of Dedicated Service in Youth Red Cross (YRC)
 
 Being a part of the Youth Red Cross for the past four years has been one of the most meaningful journeys of my college life. Through every activity and volunteer initiative, I learned that even small efforts can create a positive impact on society.
 
@@ -1075,8 +1075,8 @@ I actively participated in five community cleaning drives, including the World C
 
 As a student leader, I took responsibility for planning activities, coordinating volunteers, and ensuring the smooth execution of the event. These experiences strengthened my leadership, communication, teamwork, and organizational skills while teaching me the importance of collaboration and service.
 
-YRC has inspired me to lead with responsibility, serve with compassion, and contribute towards building a cleaner, greener, and more sustainable community. I am proud to be a part of an organization that empowers students to make a meaningful difference in society.',
-  
+YRC has inspired me to lead with responsibility, serve with compassion, and contribute towards building a cleaner, greener, and more sustainable community. I am proud to be a part of an organization that empowers students to make a meaningful difference in society.`,
+      // PROOF NAME: leadership  →  replace the filename below
       img: 'assets/leadership.jpg'
     },
     teamwork: {
@@ -1084,14 +1084,14 @@ YRC has inspired me to lead with responsibility, serve with compassion, and cont
       title: 'Teamwork',
       text: 'Worked alongside peers during the Data Science internship at DLK Software Solutions, splitting up preprocessing and analysis work on shared datasets. Swap in a specific example and a team photo here.',
       // PROOF NAME: teamwork  →  replace the filename below
-      img: 'assets/teamwork.jpg'
+      img: 'assets/proof/teamwork.jpg'
     },
     time: {
       tag: 'SOFT SKILL — TIME MANAGEMENT',
       title: 'Time Management',
       text: 'Delivered two internships and two independent projects — the Autonomous Robot and the ANPR system — inside a single academic year, each with its own fixed deadline. Add a screenshot of a project timeline or planner here.',
       // PROOF NAME: time  →  replace the filename below
-      img: 'assets/time-management.jpg'
+      img: 'assets/proof/time-management.jpg'
     },
     adaptability: {
       tag: 'SOFT SKILL — ADAPTABILITY',
@@ -1112,12 +1112,12 @@ YRC has inspired me to lead with responsibility, serve with compassion, and cont
       title: 'Placement Coordinator',
       text: 'Replace this with a description of your Placement Coordinator role — what you were responsible for and who you coordinated with.',
       // PROOF NAME: placement  →  replace the filename below
-      img: 'assets/proof/placement.jpg'
+      img: 'assets/placement.jpg'
     },
     anpr: {
       tag: 'PROJECT — 12/2025 – 04/2026',
       title: 'AI-Based Smart Bus Entry & Exit Monitoring System',
-      text: '🚍 AI Smart Bus Entry & Exit Monitoring System
+      text: `🚍 AI Smart Bus Entry & Exit Monitoring System
 
 The AI Smart Bus Entry & Exit Monitoring System is a desktop-based vehicle monitoring application developed to automate the process of identifying, tracking, and managing vehicles entering and exiting a restricted area such as a college campus, company premises, or bus depot. The primary goal of this project is to reduce manual verification, improve security, and maintain accurate vehicle movement records using Computer Vision and Optical Character Recognition (OCR).
 
@@ -1144,8 +1144,8 @@ Twilio API
 SMTP (Email)
 CSV File Handling
 Regular Expressions (Regex)
-Git & GitHub',
-      // PROOF NAME: anpr  →  replace files in assets/proof/anpr/
+Git & GitHub`,
+      // PROOF NAME: anpr  →  replace files in assets/anpr/
       // named 01.jpg, 02.jpg, 03.jpg ... 13.jpg — any numbers you
       // don't have are skipped automatically.
       images: numberedImages('assets/anpr', 13)
@@ -1153,11 +1153,11 @@ Git & GitHub',
     nctp: {
       tag: 'INTERNSHIP — 20.11.2025 – 10.12.2025',
       title: 'North Chennai Thermal Power Station — Stage II',
-      text: '## North Chennai Thermal Power Station (NCTPS) Stage II
+      text: `## North Chennai Thermal Power Station (NCTPS) Stage II
 
 **Industrial Internship | 20.11.2025 – 10.12.2025**
 
-As part of my Bachelor of Engineering in Electronics and Communication Engineering, I completed an industrial internship at **North Chennai Thermal Power Station (NCTPS) Stage II**, one of Tamil Nadu's major thermal power generation facilities operated by TANGEDCO/TNPGCL. This internship provided me with an excellent opportunity to understand the practical aspects of large-scale electricity generation and observe how engineering principles are implemented in an industrial environment. The experience allowed me to connect the theoretical concepts learned in the classroom with real-time industrial operations, making it one of the most valuable learning experiences of my academic journey.
+As part of my Bachelor of Engineering in Electronics and Communication Engineering, I completed an industrial internship at North Chennai Thermal Power Station (NCTPS) Stage II, one of Tamil Nadu's major thermal power generation facilities operated by TANGEDCO/TNPGCL. This internship provided me with an excellent opportunity to understand the practical aspects of large-scale electricity generation and observe how engineering principles are implemented in an industrial environment. The experience allowed me to connect the theoretical concepts learned in the classroom with real-time industrial operations, making it one of the most valuable learning experiences of my academic journey.
 
 During the internship, I studied the complete thermal power generation process, beginning with coal handling and fuel preparation. I observed how coal is transported, processed, and fed into the boiler, where high-pressure steam is produced through combustion. The generated steam is then directed to the turbine, converting thermal energy into mechanical energy. The turbine drives the alternator, which converts mechanical energy into electrical energy. I also gained an understanding of how the generated electricity is stepped up using transformers before being transmitted through the switchyard to the power grid for distribution.
 
@@ -1171,9 +1171,8 @@ Beyond technical knowledge, the internship enhanced my professional skills. Inte
 
 Overall, my internship at North Chennai Thermal Power Station Stage II was a highly rewarding experience that significantly strengthened my technical foundation. It provided me with practical exposure to thermal power generation, industrial automation, electrical systems, instrumentation, maintenance practices, and safety procedures. The internship not only reinforced my academic knowledge but also increased my confidence in applying engineering concepts to real-world industrial challenges. This experience has motivated me to continue developing my technical skills and pursue opportunities where I can contribute effectively as an engineering professional.
 
-**Portfolio Includes:** Internship Completion Certificate, Department Feedback Form, and Site Visit Photographs documenting the industrial training experience.
-',
-      // PROOF NAME: nctp  →  replace files in assets/proof/nctp/
+Portfolio Includes: Internship Completion Certificate, Department Feedback Form, and Site Visit Photographs documenting the industrial training experience.`,
+      // PROOF NAME: nctp  →  replace files in assets/nctps/
       // named 01.jpg through 05.jpg (currently: certificate, feedback
       // form pages, site-visit photo, in that order).
       images: numberedImages('assets/nctps', 5)
@@ -1181,52 +1180,49 @@ Overall, my internship at North Chennai Thermal Power Station Stage II was a hig
     robot: {
       tag: 'PROJECT — 04/2025 – 05/2025',
       title: 'Multi-Mode Autonomous Robot',
-      text: 'A 4-mode Arduino robot switching between obstacle avoidance, line following, hybrid navigation, and object tracking — built and presented as a paper at the CIT National Level Symposium. Add a build photo or the presentation slide here.
-        The Autonomous Robot was successfully developed with four modes of operation to perform different real-time tasks.
+      text: `The Autonomous Robot was successfully developed with four modes of operation to perform different real-time tasks.
+
 Obstacle Avoidance Mode uses an ultrasonic sensor to detect obstacles and automatically changes its path to avoid collisions.
 Line Following Mode uses IR sensors to accurately follow a predefined black line without human intervention.
 Bluetooth Control Mode allows the robot to be manually controlled through a smartphone for flexible operation.
 Voice Control Mode enables the robot to respond to voice commands, making it more interactive and user-friendly.
-The robot can easily switch between the four modes based on user requirements.
-Arduino, motor drivers, sensors, and wireless communication modules were successfully integrated into the system.
-The project demonstrated reliable performance during testing in all four operational modes.
-Developing this robot improved our knowledge of embedded systems, programming, sensor integration, and robotics.
-Overall, the project proved to be an effective and practical solution, showcasing automation, versatility, and real-world applications.',
+
+The robot can easily switch between the four modes based on user requirements. Arduino, motor drivers, sensors, and wireless communication modules were successfully integrated into the system. The project demonstrated reliable performance during testing in all four operational modes. Developing this robot improved our knowledge of embedded systems, programming, sensor integration, and robotics. Overall, the project proved to be an effective and practical solution, showcasing automation, versatility, and real-world applications.`,
       // PROOF NAME: robot  →  replace the filename below
       img: 'assets/tommy.jpg'
     },
     'award-robot': {
       tag: 'PAPER PRESENTATION',
       title: 'Multi-Mode Autonomous Robot — CIT Symposium',
-      text: 'Paper Presentation – Loyola–ICAM College of Engineering and Technology
-
-Received a Participation Certificate for presenting the paper "Safety Interlock System for Boiler Protection" at the National Level Technical Symposium organized by Loyola–ICAM College of Engineering and Technology (LICET), Chennai. The presentation focused on a boiler safety system designed to monitor critical operating conditions and automatically activate protective mechanisms to prevent accidents, improve operational safety, and enhance the reliability of industrial boiler systems.',
-      
+      // NOTE: the text you pasted here was actually a duplicate of the
+      // Loyola–ICAM boiler-paper description below. Replace this line
+      // with your real CIT Symposium write-up for the robot paper.
+      text: 'Participation certificate for presenting the Multi-Mode Autonomous Robot paper at the National Level Symposium, CIT. Replace this placeholder with your own write-up.',
+      // PROOF NAME: award-robot  →  replace the filename below
       img: 'assets/cit.jpg'
     },
     'award-boiler': {
       tag: 'PAPER PRESENTATION',
       title: 'Safety Interlock System for Boiler Protection — Loyola–ICAM',
-      text: 'Paper Presentation – Loyola–ICAM College of Engineering and Technology
+      text: `Paper Presentation – Loyola–ICAM College of Engineering and Technology
 
-Received a Participation Certificate for presenting the paper "Safety Interlock System for Boiler Protection" at the National Level Technical Symposium organized by Loyola–ICAM College of Engineering and Technology (LICET), Chennai. The presentation focused on a boiler safety system designed to monitor critical operating conditions and automatically activate protective mechanisms to prevent accidents, improve operational safety, and enhance the reliability of industrial boiler systems.',
-      
+Received a Participation Certificate for presenting the paper "Safety Interlock System for Boiler Protection" at the National Level Technical Symposium organized by Loyola–ICAM College of Engineering and Technology (LICET), Chennai. The presentation focused on a boiler safety system designed to monitor critical operating conditions and automatically activate protective mechanisms to prevent accidents, improve operational safety, and enhance the reliability of industrial boiler systems.`,
+      // PROOF NAME: award-boiler  →  replace the filename below
       img: 'assets/proof/cert-loyola-icam.jpg'
     },
     'award-nptel': {
       tag: 'CERTIFICATION',
       title: 'Python for Data Science — NPTEL',
-      text: 'NPTEL Online Certification – Python for Data Science
+      text: `NPTEL Online Certification – Python for Data Science
 
 Successfully completed the NPTEL Online Certification course "Python for Data Science", offered by the Indian Institute of Technology Madras (IIT Madras) through the SWAYAM platform during July–August 2024. Achieved a consolidated score of 55%, demonstrating a strong foundation in Python programming, data handling, and essential data science concepts. The course covered Python fundamentals, data structures, NumPy, Pandas, data visualization, and basic data analysis techniques, strengthening my programming and analytical skills for solving real-world problems.
 
 Key Highlights:
-
 Course: Python for Data Science
 Institution: IIT Madras (NPTEL – SWAYAM)
 Duration: July–August 2024 (4 Weeks)
 Consolidated Score: 55%
-Skills Gained: Python Programming, NumPy, Pandas, Data Analysis, Data Visualization, Problem Solving',
+Skills Gained: Python Programming, NumPy, Pandas, Data Analysis, Data Visualization, Problem Solving`,
       // PROOF NAME: award-nptel  →  replace the filename below
       img: 'assets/python.jpg'
     },
