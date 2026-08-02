@@ -529,7 +529,7 @@
 <div class="wrap">
 
 <nav>
-  <div class="logo">kabilan<span>.</span>dev</div>
+  <div class="logo">KABLN<span>.</span>dev</div>
   <div class="tabs" id="tabs">
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
@@ -570,7 +570,7 @@
     </div>
 
     <div class="hero-meta">
-      <span><span class="dot"></span>Chennai, India</span>
+      <span><span class="dot"></span>Chennai - 66, India</span>
       <span><span class="dot"></span>kabilanvec@gmail.com</span>
       <span><span class="dot"></span>7010286455</span>
       <span><span class="dot"></span><a href="https://linkedin.com/in/kabilan-s-429b39292" target="_blank" rel="noopener">linkedin.com/in/kabilan-s-429b39292</a></span>
@@ -592,7 +592,7 @@
       <div class="swipe-zone" data-swipe="objective">
         <p class="panel panel-software is-active">I enjoy solving problems through programming and learning new technologies. I'm looking for an opportunity to apply my Java and Python skills, gain hands-on engineering experience, and grow into a backend developer who contributes to meaningful projects.</p>
         <p class="panel panel-hardware">I enjoy building and testing hardware — from embedded robotics to industrial control systems. I'm looking for an opportunity to apply my embedded systems and sensor-integration skills, gain hands-on engineering experience, and grow into a hardware/embedded engineer who contributes to meaningful projects.</p>
-        <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
+        <span class="swipe-hint">⇄ </span>
       </div>
       <p>Currently pursuing a B.E. in Electronics &amp; Communication Engineering, with hands-on exposure to data science, embedded systems, and computer vision through internships and independent projects.</p>
     </div>
@@ -630,6 +630,7 @@
       <li>Worked with Pandas and NumPy for data preprocessing and analysis.</li>
       <li>Gained experience in data manipulation, visualization, and exploratory data analysis (EDA).</li>
     </ul>
+    <button class="proof-btn" data-proof="dlk">View proof</button>
   </div>
 </section>
 
@@ -717,7 +718,7 @@
 &nbsp;&nbsp;<span class="k">"industrial_exposure"</span>: [<span class="s">"Boilers & Turbines"</span>, <span class="s">"Generators & Transformers"</span>, <span class="s">"Control Systems"</span>, <span class="s">"Industrial Safety Practices"</span>, <span class="s">"Equipment Monitoring"</span>]<br>
 <span class="p">}</span></div>
       </div>
-      <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
+      <span class="swipe-hint">⇄ </span>
     </div>
     <div class="soft-row">
       <span class="soft-chip proof-trigger" data-proof="leadership" role="button" tabindex="0">Leadership</span>
@@ -739,14 +740,14 @@
     <div class="edu-card">
       <div>
         <h3>Bachelor of Engineering — Electronics &amp; Communication Engineering</h3>
-        <span class="org">Velammal Engineering College, Surapet, Chennai</span>
+        <span class="org">Velammal Engineering College, Surapet, Chennai-66.</span>
       </div>
       <span class="edu-time">09/2023 – 05/2027</span>
     </div>
     <div class="edu-card">
       <div>
         <h3>SSLC &amp; Higher Secondary</h3>
-        <span class="org">St Paul's Matriculation Higher Secondary School, Neyveli</span>
+        <span class="org">St Paul's Matriculation Higher Secondary School,Block-4, Neyveli.</span>
       </div>
       <div style="display:flex; gap:24px; align-items:center;">
         <span class="edu-score">100% <span style="font-family:var(--mono); font-size:11px; color:var(--text-faint); font-weight:400;">SSLC</span></span>
@@ -832,7 +833,7 @@
   </div>
 </section>
 
-<footer>© 2026 KABILAN S — built with intent, not a template.</footer>
+<footer>Copyrights © 2026 KABILAN S — Backend Developer.</footer>
 </div>
 
 <div class="proof-overlay" id="proofOverlay">
@@ -1007,9 +1008,7 @@
     revealEls.forEach(el => io.observe(el));
   }
 
-  // ============================================================
   // SOFTWARE / HARDWARE MODE SWITCH
-  // ============================================================
   let currentMode = 'software';
   const modeButtons = document.querySelectorAll('#modeSwitch button');
 
@@ -1046,19 +1045,8 @@
     }, { passive: true });
   });
 
-  // ============================================================
   // PROOF SYSTEM
-  // To attach your own photo or certificate scan to any item below,
-  // just change its "img" path to point at your own file. Single
-  // images sit right next to this HTML file (no folder), e.g.
-  // img: "leadership.jpg". Only multi-photo galleries (anpr, nctp)
-  // use their own subfolder. If a file isn't found, a placeholder
-  // is shown automatically — nothing breaks.
-  // ============================================================
-  // Generates ['anpr/01.jpg', 'anpr/02.jpg', ...] so you can just
-  // drop numbered files in a subfolder (used only for multi-photo
-  // galleries like ANPR and NCTP) — any that don't exist are
-  // silently skipped, so it's fine to have fewer than `count`.
+
   function numberedImages(folder, count, ext = 'jpg'){
     return Array.from({ length: count }, (_, i) =>
       `${folder}/${String(i + 1).padStart(2, '0')}.${ext}`
@@ -1171,9 +1159,9 @@ Git & GitHub`,
     nctp: {
       tag: 'INTERNSHIP — 20.11.2025 – 10.12.2025',
       title: 'North Chennai Thermal Power Station — Stage II',
-      text: `## North Chennai Thermal Power Station (NCTPS) Stage II
+      text: `
 
-**Industrial Internship | 20.11.2025 – 10.12.2025**
+Industrial Internship | 20.11.2025 – 10.12.2025
 
 As part of my Bachelor of Engineering in Electronics and Communication Engineering, I completed an industrial internship at North Chennai Thermal Power Station (NCTPS) Stage II, one of Tamil Nadu's major thermal power generation facilities operated by TANGEDCO/TNPGCL. This internship provided me with an excellent opportunity to understand the practical aspects of large-scale electricity generation and observe how engineering principles are implemented in an industrial environment. The experience allowed me to connect the theoretical concepts learned in the classroom with real-time industrial operations, making it one of the most valuable learning experiences of my academic journey.
 
@@ -1188,11 +1176,8 @@ The internship also emphasized the importance of industrial safety, maintenance,
 Beyond technical knowledge, the internship enhanced my professional skills. Interacting with experienced engineers and technicians improved my communication abilities, technical observation, teamwork, and professional ethics. I learned how different departments coordinate effectively to achieve continuous and reliable power generation while maintaining strict safety and quality standards. Observing real industrial workflows also strengthened my problem-solving approach and gave me a better understanding of engineering practices in large-scale power plants.
 
 Overall, my internship at North Chennai Thermal Power Station Stage II was a highly rewarding experience that significantly strengthened my technical foundation. It provided me with practical exposure to thermal power generation, industrial automation, electrical systems, instrumentation, maintenance practices, and safety procedures. The internship not only reinforced my academic knowledge but also increased my confidence in applying engineering concepts to real-world industrial challenges. This experience has motivated me to continue developing my technical skills and pursue opportunities where I can contribute effectively as an engineering professional.
+`,
 
-Portfolio Includes: Internship Completion Certificate, Department Feedback Form, and Site Visit Photographs documenting the industrial training experience.`,
-      // PROOF NAME: nctp  →  replace/add files in the nctp/ folder.
-      // Listed explicitly (not numbered) since the filenames have
-      // spaces and a .jpeg extension.
       images: [
         'nctp/Intern image.jpeg',
         'nctp/feedback 1.jpeg',
