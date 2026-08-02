@@ -1147,10 +1147,26 @@ SMTP (Email)
 CSV File Handling
 Regular Expressions (Regex)
 Git & GitHub`,
-      // PROOF NAME: anpr  →  replace files in the anpr/ folder
-      // named 01.jpg, 02.jpg, 03.jpg ... 13.jpg — any numbers you
-      // don't have are skipped automatically.
-      images: numberedImages('anpr', 13)
+      // PROOF NAME: anpr  →  replace/add files in the anpr/ folder.
+      // Listed explicitly since the uploaded filenames have mixed
+      // extensions (.jpg.png / .jpg.jpg) and one has a comma instead
+      // of a period in "02,jpg.png" — rename them on GitHub whenever
+      // you like, just keep this list in sync if you do.
+      images: [
+        'anpr/01.jpg.png',
+        'anpr/02,jpg.png',
+        'anpr/03.jpg.png',
+        'anpr/04.jpg.png',
+        'anpr/05.jpg.png',
+        'anpr/06.jpg.png',
+        'anpr/07.jpg.png',
+        'anpr/08.jpg.png',
+        'anpr/09.jpg.png',
+        'anpr/10.jpg.png',
+        'anpr/11.jpg.png',
+        'anpr/12.jpg.png',
+        'anpr/13.jpg.jpg'
+      ]
     },
     nctp: {
       tag: 'INTERNSHIP — 20.11.2025 – 10.12.2025',
@@ -1174,10 +1190,15 @@ Beyond technical knowledge, the internship enhanced my professional skills. Inte
 Overall, my internship at North Chennai Thermal Power Station Stage II was a highly rewarding experience that significantly strengthened my technical foundation. It provided me with practical exposure to thermal power generation, industrial automation, electrical systems, instrumentation, maintenance practices, and safety procedures. The internship not only reinforced my academic knowledge but also increased my confidence in applying engineering concepts to real-world industrial challenges. This experience has motivated me to continue developing my technical skills and pursue opportunities where I can contribute effectively as an engineering professional.
 
 Portfolio Includes: Internship Completion Certificate, Department Feedback Form, and Site Visit Photographs documenting the industrial training experience.`,
-      // PROOF NAME: nctp  →  replace files in the nctp/ folder
-      // named 01.jpg through 05.jpg (currently: certificate, feedback
-      // form pages, site-visit photo, in that order).
-      images: numberedImages('nctp', 5)
+      // PROOF NAME: nctp  →  replace/add files in the nctp/ folder.
+      // Listed explicitly (not numbered) since the filenames have
+      // spaces and a .jpeg extension.
+      images: [
+        'nctp/Intern image.jpeg',
+        'nctp/feedback 1.jpeg',
+        'nctp/feedback.jpeg',
+        'nctp/intern pic.jpeg'
+      ]
     },
     robot: {
       tag: 'PROJECT — 04/2025 – 05/2025',
