@@ -236,7 +236,7 @@
   .log-org{color:var(--text-muted); font-size:14px; margin-bottom:10px; display:block;}
   .log-entry ul{list-style:none; display:flex; flex-direction:column; gap:6px;}
   .log-entry li{color:var(--text-muted); font-size:14.5px; padding-left:16px; position:relative;}
-  .log-entry li::before{content:'—'; position:absolute; left:0; color:var(--text-faint);}
+  .log-entry li::before{content:'*'; position:absolute; left:0; color:var(--accent); font-weight:700;}
 
   /* ---------- PROJECTS ---------- */
   .proj-card{
@@ -566,11 +566,11 @@
       <div class="panel panel-hardware">
         <p class="role-line">Electronics &amp; Communication Engineering student who builds hands-on hardware — <strong>Arduino</strong>-based robotics, sensor integration, motor control, and real industrial control-system exposure from a thermal power station internship.</p>
       </div>
-      <span class="swipe-hint">⇄ swipe, or use the switch in the nav</span>
+      <span class="swipe-hint">⇄</span>
     </div>
 
     <div class="hero-meta">
-      <span><span class="dot"></span>Chennai - 66, India</span>
+      <span><span class="dot"></span>Chennai, India</span>
       <span><span class="dot"></span>kabilanvec@gmail.com</span>
       <span><span class="dot"></span>7010286455</span>
       <span><span class="dot"></span><a href="https://linkedin.com/in/kabilan-s-429b39292" target="_blank" rel="noopener">linkedin.com/in/kabilan-s-429b39292</a></span>
@@ -614,9 +614,11 @@
     <h3>Intern</h3>
     <span class="log-org">North Chennai Thermal Power Station (NCTPS) — Stage II</span>
     <ul>
-      <li>Studied thermal power generation and plant operations.</li>
-      <li>Observed boilers, turbines, generators, transformers, and control systems.</li>
-      <li>Learned industrial safety practices, equipment maintenance, and power plant monitoring.</li>
+      <li>Getting a first-hand look at how power actually gets generated changed the way I think about electricity. Watching coal move through the plant, get burned in the boiler, and turn into steam that spins a turbine made something that used to be a textbook diagram feel completely real. Standing next to machines producing electricity for an entire part of the city put my engineering coursework into a whole new context, and made me realise how much detail gets left out of a two-page syllabus explanation.</li>
+      <li>I spent a good chunk of the internship walking through the turbine hall, the generator section, and the switchyard with senior engineers explaining how each part connects to the next. Nobody there just recited facts — they walked me through the reasoning behind why a transformer has to step up voltage before transmission, or why the condenser has to keep pulling heat out of the system constantly. That kind of explanation sticks with you far longer than anything from a lecture slide, because it's tied to a real machine you can actually see running.</li>
+      <li>The central control room was probably my favorite part of the whole training. Rows of screens tracking pressure, temperature, flow rate, and turbine speed in real time, with operators making calm decisions based on numbers that would panic most people. I got to see how instrumentation and automation aren't just abstract control-systems theory — they're literally what keeps a plant from breaking down or cutting power to thousands of homes.</li>
+      <li>Safety wasn't treated as a checkbox exercise here, it was built into everything. Before I could even walk into certain sections I had to wear the right gear and understand what could go wrong if I didn't. I picked up a genuine respect for how much planning goes into preventing accidents in an environment where a single mistake can be dangerous, and how maintenance schedules exist specifically to catch problems before they turn into emergencies.</li>
+      <li>Beyond the technical side, the internship taught me a lot about working inside a large organisation. Different teams — maintenance, operations, safety — all had to stay in sync for the plant to run smoothly, and I got a small window into how that coordination actually happens day to day. It left me more confident about asking questions, taking notes seriously, and communicating clearly with people who know far more than I do.</li>
     </ul>
     <button class="proof-btn" data-proof="nctp">View proof</button>
   </div>
@@ -626,11 +628,12 @@
     <h3>Intern — Data Science</h3>
     <span class="log-org">DLK Software Solutions</span>
     <ul>
-      <li>Completed hands-on training in Data Science using Python.</li>
-      <li>Worked with Pandas and NumPy for data preprocessing and analysis.</li>
-      <li>Gained experience in data manipulation, visualization, and exploratory data analysis (EDA).</li>
+      <li>Before this internship, Python felt like something I used mostly for assignments and small scripts. At DLK Software Solutions I got to see it used the way working data scientists actually use it — cleaning messy datasets, running exploratory checks, and turning raw numbers into something you could genuinely make a decision from. It was the first time I felt like I was doing the job instead of just practising for it, and that shift in mindset was worth as much as any single skill I picked up.</li>
+      <li>A lot of my time went into learning Pandas and NumPy properly instead of just knowing the syntax. Real datasets are never clean — there are missing values, inconsistent formats, and outliers that skew everything if you don't catch them early. Working through that taught me patience and a habit of double-checking my own results instead of trusting the first output I saw, which is a habit I now carry into every project I build outside of work too.</li>
+      <li>Exploratory data analysis turned out to be far more interesting than I expected going in. Plotting distributions, checking correlations, and just poking around a dataset before jumping into anything complicated is honestly where most of the useful insight comes from. I got comfortable with visualisation libraries and slowly built an instinct for what a chart is actually trying to tell me.</li>
+      <li>The internship also pushed me to think about data quality as something you actively manage, not something you assume. Every dataset I touched needed some kind of preprocessing before it was usable, and I started building a mental checklist for handling nulls, formatting dates, and encoding categories — the kind of groundwork most people skip over when they talk about data science.</li>
+      <li>What I valued most, though, was the mentorship. Having someone experienced review my approach and point out where my logic was shaky was more useful than any tutorial could have been. It gave me a realistic sense of what a data-focused role actually looks like day to day, and it made me want to keep building on these skills instead of treating Python as just another subject to pass.</li>
     </ul>
-    <button class="proof-btn" data-proof="dlk">View proof</button>
   </div>
 </section>
 
@@ -660,10 +663,10 @@
       <span class="tag">Twilio</span><span class="tag">Cloudinary</span><span class="tag">Tkinter</span>
     </div>
     <ul style="list-style:none; color:var(--text-muted); font-size:14.5px; display:flex; flex-direction:column; gap:6px; margin-bottom:16px;">
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Automatic entry/exit logging with timestamp and GPS coordinates, exported to CSV.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>WhatsApp alerts via Twilio and email notifications with image attachments for blocked vehicles.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Captured vehicle images stored on Cloudinary for remote access.</li>
-      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">—</span>Streamlit analytics dashboard for vehicle statistics, entry/exit logs, and reports.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Automatic entry/exit logging with timestamp and GPS coordinates, exported to CSV.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>WhatsApp alerts via Twilio and email notifications with image attachments for blocked vehicles.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Captured vehicle images stored on Cloudinary for remote access.</li>
+      <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--text-faint);">*</span>Streamlit analytics dashboard for vehicle statistics, entry/exit logs, and reports.</li>
     </ul>
     <div class="log-line">
       <span>ENTRY <b>2025-12-01 14:32:07</b></span>
@@ -740,14 +743,14 @@
     <div class="edu-card">
       <div>
         <h3>Bachelor of Engineering — Electronics &amp; Communication Engineering</h3>
-        <span class="org">Velammal Engineering College, Surapet, Chennai-66.</span>
+        <span class="org">Velammal Engineering College, Surapet, Chennai</span>
       </div>
       <span class="edu-time">09/2023 – 05/2027</span>
     </div>
     <div class="edu-card">
       <div>
         <h3>SSLC &amp; Higher Secondary</h3>
-        <span class="org">St Paul's Matriculation Higher Secondary School,Block-4, Neyveli.</span>
+        <span class="org">St Paul's Matriculation Higher Secondary School, Neyveli</span>
       </div>
       <div style="display:flex; gap:24px; align-items:center;">
         <span class="edu-score">100% <span style="font-family:var(--mono); font-size:11px; color:var(--text-faint); font-weight:400;">SSLC</span></span>
@@ -833,7 +836,7 @@
   </div>
 </section>
 
-<footer>Copyrights © 2026 KABILAN S — Backend Developer.</footer>
+<footer>© 2026 KABILAN S — built with intent, not a template.</footer>
 </div>
 
 <div class="proof-overlay" id="proofOverlay">
@@ -1008,7 +1011,9 @@
     revealEls.forEach(el => io.observe(el));
   }
 
+  // ============================================================
   // SOFTWARE / HARDWARE MODE SWITCH
+  // ============================================================
   let currentMode = 'software';
   const modeButtons = document.querySelectorAll('#modeSwitch button');
 
@@ -1045,8 +1050,19 @@
     }, { passive: true });
   });
 
+  // ============================================================
   // PROOF SYSTEM
-
+  // To attach your own photo or certificate scan to any item below,
+  // just change its "img" path to point at your own file. Single
+  // images sit right next to this HTML file (no folder), e.g.
+  // img: "leadership.jpg". Only multi-photo galleries (anpr, nctp)
+  // use their own subfolder. If a file isn't found, a placeholder
+  // is shown automatically — nothing breaks.
+  // ============================================================
+  // Generates ['anpr/01.jpg', 'anpr/02.jpg', ...] so you can just
+  // drop numbered files in a subfolder (used only for multi-photo
+  // galleries like ANPR and NCTP) — any that don't exist are
+  // silently skipped, so it's fine to have fewer than `count`.
   function numberedImages(folder, count, ext = 'jpg'){
     return Array.from({ length: count }, (_, i) =>
       `${folder}/${String(i + 1).padStart(2, '0')}.${ext}`
@@ -1107,34 +1123,27 @@ YRC has inspired me to lead with responsibility, serve with compassion, and cont
     anpr: {
       tag: 'PROJECT — 12/2025 – 04/2026',
       title: 'AI-Based Smart Bus Entry & Exit Monitoring System',
-      text: `🚍 AI Smart Bus Entry & Exit Monitoring System
+      text: `The idea for this project came from a very ordinary problem. On most campuses or company premises, keeping track of which vehicles come in and go out is usually handled by a security guard writing plate numbers into a register by hand, which is slow, easy to get wrong, and almost impossible to search through later if something goes wrong. I wanted to build something that could do that job automatically and reliably, and alert the right people the moment something looks off, instead of someone discovering a problem hours later while flipping through a logbook.
 
-The AI Smart Bus Entry & Exit Monitoring System is a desktop-based vehicle monitoring application developed to automate the process of identifying, tracking, and managing vehicles entering and exiting a restricted area such as a college campus, company premises, or bus depot. The primary goal of this project is to reduce manual verification, improve security, and maintain accurate vehicle movement records using Computer Vision and Optical Character Recognition (OCR).
+At its core, the system watches a live camera feed, figures out when a vehicle is in frame, reads its number plate, and checks that plate against a list of vehicles that are allowed or blocked. Everything downstream of that single check — logging, alerts, image storage — happens automatically without anyone needing to sit and monitor it.
 
-The system uses a live camera feed to capture vehicle images in real time. OpenCV is used for image acquisition and processing, while EasyOCR extracts the vehicle registration number from the captured frame. The detected number plate is cleaned and formatted before being compared with a locally stored vehicle database containing allowed and blocked vehicles.
+The first real component is the image capture and processing layer, built on OpenCV. This is the part that actually talks to the camera, grabs frames, and prepares them for the next stage — resizing, adjusting contrast, and cropping down to the region where the plate is likely to be. Camera feeds are messy in practice: glare, motion blur from a moving bus, plates at an angle, all of that has to be handled before OCR even gets a chance to read anything.
 
-When a vehicle is detected, the system automatically verifies its status. If the vehicle is registered as Allowed, the entry or exit is recorded along with the date, time, and movement type. If the vehicle is marked as Blocked, the system immediately captures an image of the vehicle, stores it locally, uploads it to Cloudinary for secure cloud storage, and sends instant notifications through both Email and WhatsApp using SMTP and Twilio APIs. This enables security personnel to respond quickly to unauthorized vehicle access.
+The second component is plate recognition, handled by EasyOCR. Once OpenCV hands over a cleaned-up frame, EasyOCR tries to read the characters on the plate, and this is genuinely the hardest part of the whole project. Number plates in real conditions are rarely printed neatly and centred the way they look in tutorials — there's dust, uneven lighting, and sometimes plates that are just old and faded. I had to add extra preprocessing on top of what EasyOCR does by default, along with regex-based cleanup afterward, to strip out characters that clearly aren't part of a real plate format and to standardise the text before it gets compared against anything.
 
-A desktop dashboard developed using Tkinter provides a simple and interactive interface to monitor vehicle details in real time. The dashboard displays the detected vehicle number, current date and time, vehicle status, and movement direction. Every detection is automatically stored in CSV log files, creating a complete history of vehicle movements for future reference.
+Once a plate is read, it goes into the authentication layer, which is really a lookup against a locally stored database built with Pandas and kept as CSV files. I kept it simple on purpose — a table of plate numbers tagged as allowed or blocked. When a plate comes through, the system checks it against that table and decides what happens next. If it's allowed, the event gets logged with a timestamp and direction (entry or exit) and that's it, no alerts needed. If it's blocked, that's where the rest of the system kicks in.
 
-One of the key challenges during development was improving OCR accuracy under different lighting conditions and camera angles. To overcome this, preprocessing techniques such as image filtering, text cleaning, and OCR correction logic were implemented to minimize incorrect detections and improve recognition performance. The project also includes error handling, automatic file creation, cloud upload management, and asynchronous alert mechanisms to ensure reliable execution.
+For blocked vehicles, the system captures and saves an image locally, then uploads it to Cloudinary so there's a remote, always-accessible copy that doesn't depend on the machine running the software. At the same time it fires off two kinds of alerts — an email through SMTP and a WhatsApp message through the Twilio API — both including the captured image, so whoever is responsible for security gets an actual picture of the vehicle immediately instead of just a plate number on a screen somewhere.
 
-This project demonstrates the practical integration of Computer Vision, OCR, cloud services, and communication APIs into a real-world security application. It strengthened my understanding of Python programming, image processing, file handling, API integration, GUI development, and real-time system design. More importantly, it provided hands-on experience in developing an end-to-end application that combines software development with automation and security monitoring.
+All of this is tied together through a desktop interface built with Tkinter. I didn't want it to feel like a script running quietly in a terminal window, so the dashboard shows the live detection, the vehicle's status, the time, and the direction of movement, while everything gets written to CSV logs in the background so there's a full history to look back on later if needed.
 
-Although this version is designed as a desktop application, the overall architecture can be extended into a web-based monitoring platform with centralized database management, multiple user authentication, analytics dashboards, and cloud deployment for large-scale vehicle monitoring systems.
+Working on this taught me more about the gap between "it works in a demo" and "it works reliably" than anything else I've built so far. OCR accuracy in particular was frustrating for a long time — the same plate could get read correctly in one frame and completely wrong two frames later, just because of a slight change in lighting. Getting that under control meant a lot of trial and error with preprocessing steps, and accepting that no OCR system is ever going to be perfect, which is part of why an "Unknown" status exists as a middle ground between allowed and blocked, rather than forcing every reading into one of two boxes.
 
-🛠️ Technologies Used
-Python
-OpenCV
-EasyOCR
-Tkinter
-Pandas
-Cloudinary
-Twilio API
-SMTP (Email)
-CSV File Handling
-Regular Expressions (Regex)
-Git & GitHub`,
+On the positive side, the system genuinely does what it set out to do. It removes the need for someone to manually track vehicle movement, it responds to a blocked vehicle within seconds instead of whenever someone happens to check a logbook, and because everything gets logged automatically, there's a searchable record instead of a stack of paper. It's also built entirely on tools that are free and well documented, which made it realistic to build and test as a student project without needing any paid infrastructure beyond a Cloudinary and Twilio free tier.
+
+That said, I'm honest about its limits too. A CSV file works fine for a small vehicle list, but it isn't going to scale well if this were deployed somewhere with thousands of registered vehicles — a proper database would be needed at that point. It also only handles one camera and one plate-format assumption, so a real deployment covering multiple entry points would need a more flexible detection pipeline. And because it's a desktop application, only the machine it's running on can be used to monitor it directly, which limits how a security team could actually use it day to day.
+
+If I were to take this further, the first thing I'd change is moving from CSV storage to a proper database like SQLite or PostgreSQL, both for reliability and to support more complex queries later. I'd also want to move the interface to the web so multiple people could check on activity from their phones instead of needing to be at the machine physically, and add basic login roles so not everyone has the same level of access. On the detection side, training or fine-tuning a model specifically on local number plates would probably do more for accuracy than any amount of preprocessing tweaking, especially in low light or rain. Supporting multiple camera feeds at once, so different entry and exit points can all report into the same system, feels like the natural next step once the single-camera version is solid. There's also room to add basic analytics — daily vehicle counts, peak entry times, repeat blocked-vehicle attempts — turning the raw logs into something a security team could actually act on instead of just read.`,
       // PROOF NAME: anpr  →  replace/add files in the anpr/ folder.
       // Listed explicitly since the uploaded filenames have mixed
       // extensions (.jpg.png / .jpg.jpg) and one has a comma instead
@@ -1159,9 +1168,9 @@ Git & GitHub`,
     nctp: {
       tag: 'INTERNSHIP — 20.11.2025 – 10.12.2025',
       title: 'North Chennai Thermal Power Station — Stage II',
-      text: `
+      text: `## North Chennai Thermal Power Station (NCTPS) Stage II
 
-Industrial Internship | 20.11.2025 – 10.12.2025
+**Industrial Internship | 20.11.2025 – 10.12.2025**
 
 As part of my Bachelor of Engineering in Electronics and Communication Engineering, I completed an industrial internship at North Chennai Thermal Power Station (NCTPS) Stage II, one of Tamil Nadu's major thermal power generation facilities operated by TANGEDCO/TNPGCL. This internship provided me with an excellent opportunity to understand the practical aspects of large-scale electricity generation and observe how engineering principles are implemented in an industrial environment. The experience allowed me to connect the theoretical concepts learned in the classroom with real-time industrial operations, making it one of the most valuable learning experiences of my academic journey.
 
@@ -1176,8 +1185,11 @@ The internship also emphasized the importance of industrial safety, maintenance,
 Beyond technical knowledge, the internship enhanced my professional skills. Interacting with experienced engineers and technicians improved my communication abilities, technical observation, teamwork, and professional ethics. I learned how different departments coordinate effectively to achieve continuous and reliable power generation while maintaining strict safety and quality standards. Observing real industrial workflows also strengthened my problem-solving approach and gave me a better understanding of engineering practices in large-scale power plants.
 
 Overall, my internship at North Chennai Thermal Power Station Stage II was a highly rewarding experience that significantly strengthened my technical foundation. It provided me with practical exposure to thermal power generation, industrial automation, electrical systems, instrumentation, maintenance practices, and safety procedures. The internship not only reinforced my academic knowledge but also increased my confidence in applying engineering concepts to real-world industrial challenges. This experience has motivated me to continue developing my technical skills and pursue opportunities where I can contribute effectively as an engineering professional.
-`,
 
+Portfolio Includes: Internship Completion Certificate, Department Feedback Form, and Site Visit Photographs documenting the industrial training experience.`,
+      // PROOF NAME: nctp  →  replace/add files in the nctp/ folder.
+      // Listed explicitly (not numbered) since the filenames have
+      // spaces and a .jpeg extension.
       images: [
         'nctp/Intern image.jpeg',
         'nctp/feedback 1.jpeg',
@@ -1188,14 +1200,27 @@ Overall, my internship at North Chennai Thermal Power Station Stage II was a hig
     robot: {
       tag: 'PROJECT — 04/2025 – 05/2025',
       title: 'Multi-Mode Autonomous Robot',
-      text: `The Autonomous Robot was successfully developed with four modes of operation to perform different real-time tasks.
+      text: `This project started as a simple question — could I build one robot that behaves differently depending on what you ask it to do, instead of building four separate robots for four separate behaviours? That constraint shaped almost every decision I made, from how I wired the sensors to how I structured the code, because everything had to share the same chassis, the same motors, and the same brain.
 
-Obstacle Avoidance Mode uses an ultrasonic sensor to detect obstacles and automatically changes its path to avoid collisions.
-Line Following Mode uses IR sensors to accurately follow a predefined black line without human intervention.
-Bluetooth Control Mode allows the robot to be manually controlled through a smartphone for flexible operation.
-Voice Control Mode enables the robot to respond to voice commands, making it more interactive and user-friendly.
+The physical build is a standard four-wheel-drive chassis, chosen mainly because it's stable and forgiving to work with as a first serious robotics project. Two DC motors on each side are controlled through an L298N motor driver, which sits between the low-power logic signals coming from the Arduino and the higher current the motors actually need to move. Without that driver board, the Arduino's own pins would burn out trying to push that kind of current directly, so it's a small component but a genuinely necessary one.
 
-The robot can easily switch between the four modes based on user requirements. Arduino, motor drivers, sensors, and wireless communication modules were successfully integrated into the system. The project demonstrated reliable performance during testing in all four operational modes. Developing this robot improved our knowledge of embedded systems, programming, sensor integration, and robotics. Overall, the project proved to be an effective and practical solution, showcasing automation, versatility, and real-world applications.`,
+At the centre of everything is an Arduino Uno, which is where all four modes are actually decided and executed. I wrote the whole control logic in Embedded C using the Arduino IDE, with a mode variable that determines which block of code runs on any given loop cycle. Switching modes doesn't restart the robot or reset anything, it just changes which sensor readings the code is currently paying attention to.
+
+Obstacle Avoidance mode relies on an HC-SR04 ultrasonic sensor mounted at the front. It sends out a short ultrasonic pulse and measures how long it takes to bounce back off whatever's in front of it, which gives a fairly accurate distance reading. If something gets closer than a set threshold, the robot stops, reverses slightly, and turns toward whichever side has more open space, then continues forward. It's a simple algorithm, but getting the threshold values right so the robot reacts early enough without being overly twitchy took a fair amount of testing.
+
+Line Following mode swaps over to a pair of IR sensors mounted underneath, near the front wheels. These sensors detect the contrast between a dark line and a lighter surface by measuring reflected infrared light. When both sensors see the line, the robot goes straight; when one drifts off it, the robot corrects by slowing or reversing one side's motors to steer back onto the path. IR sensors are surprisingly sensitive to ambient lighting, so this mode needed the most manual calibration out of all four, and it also assumes a fairly clean, high-contrast line, which is a limitation I ran into more than once during testing.
+
+Bluetooth Control mode uses an HC-05 Bluetooth module paired with a basic Android app that sends single-character commands over serial — forward, back, left, right, stop. The Arduino listens for these characters and drives the motors accordingly. This mode exists mainly for flexibility, letting someone take over manually in situations where the automated behaviour isn't appropriate, like navigating somewhere with no line to follow and no clear obstacle pattern to react to.
+
+Voice Control mode builds on the same Bluetooth connection, but instead of raw button presses, it accepts short spoken commands processed through the phone's speech recognition and sent over as text, which the Arduino then matches against a small set of known keywords. It's the mode people tend to find the most fun to interact with, even though under the hood it's using the same wireless link as the manual Bluetooth mode.
+
+Powering all of this is a 9V battery pack feeding the Arduino and the motor driver separately, since motors draw current in noisy, unpredictable bursts that can interfere with the Arduino's own power supply if they're not isolated properly. Getting the wiring and grounding right there was one of those unglamorous but important lessons — plenty of early bugs turned out to be power issues rather than code issues.
+
+One of the things I'm genuinely proud of is that all four modes run reliably on the same hardware without needing to reflash the Arduino or swap any components between tests. That's a small thing on paper but it made testing dramatically faster, since I could sit with the robot and cycle through every mode in a single session instead of rebuilding the circuit each time.
+
+The honest downsides are mostly about the sensors themselves rather than the overall design. The ultrasonic sensor struggles with soft or angled surfaces that scatter the sound wave instead of reflecting it back cleanly, so obstacle detection isn't perfect on things like cloth or curved surfaces. The IR line sensors need a genuinely dark line on a light background to work consistently, and anything with glare or a low-contrast line throws them off. Bluetooth range is also fairly short, so voice and manual control only really work within a room, not across a larger space. And there's no memory of where the robot has already been, so it can't build any kind of map or plan a route — it just reacts to whatever it's sensing right now.
+
+If I extended this project further, the first thing I'd look at is adding a basic camera module so the robot could recognise objects rather than just detecting that something is in front of it, which would open the door to a proper object-tracking mode instead of the simplified version I have now. Swapping the ultrasonic sensor for something like a small LiDAR unit would also make obstacle detection far more consistent across different surface types. On the software side, I'd like to explore something like ROS instead of raw Arduino code once the project outgrows a single microcontroller, since that would make it much easier to add more complex behaviours without everything living inside one long loop function. Adding an IMU and some form of odometry would let the robot start estimating its own position, which is the first real step toward actual autonomous navigation instead of purely reactive behaviour. And longer term, replacing the phone-based Bluetooth control with a proper Wi-Fi connection would extend the usable range significantly and open up remote control from well outside a single room.`,
       // PROOF NAME: robot  →  replace the filename below
       img: 'tommy.jpg'
     },
