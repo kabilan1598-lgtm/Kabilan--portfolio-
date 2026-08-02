@@ -1050,12 +1050,13 @@
   // PROOF SYSTEM
   // To attach your own photo or certificate scan to any item below,
   // just change its "img" path to point at your own file, e.g.
-  // put images in an /assets/proof/ folder next to this file and
-  // set img: "assets/proof/leadership.jpg". If a file isn't found,
+  // put single images directly in an /assets/ folder next to this
+  // file and set img: "assets/leadership.jpg". If a file isn't found,
   // a placeholder is shown automatically — nothing breaks.
   // ============================================================
-  // Generates ['assets/proof/anpr/01.jpg', 'assets/proof/anpr/02.jpg', ...]
-  // so you can just drop numbered files in a folder — any that don't
+  // Generates ['assets/anpr/01.jpg', 'assets/anpr/02.jpg', ...] so
+  // you can just drop numbered files in a subfolder (used only for
+  // multi-photo galleries like ANPR and NCTP) — any that don't
   // exist are silently skipped, so it's fine to have fewer than `count`.
   function numberedImages(folder, count, ext = 'jpg'){
     return Array.from({ length: count }, (_, i) =>
@@ -1077,35 +1078,35 @@ As a student leader, I took responsibility for planning activities, coordinating
 
 YRC has inspired me to lead with responsibility, serve with compassion, and contribute towards building a cleaner, greener, and more sustainable community. I am proud to be a part of an organization that empowers students to make a meaningful difference in society.`,
       // PROOF NAME: leadership  →  replace the filename below
-      img: 'leadership.jpg'
+      img: 'assets/leadership.jpg'
     },
     teamwork: {
       tag: 'SOFT SKILL — TEAMWORK',
       title: 'Teamwork',
       text: 'Worked alongside peers during the Data Science internship at DLK Software Solutions, splitting up preprocessing and analysis work on shared datasets. Swap in a specific example and a team photo here.',
       // PROOF NAME: teamwork  →  replace the filename below
-      img: 'assets/proof/teamwork.jpg'
+      img: 'assets/teamwork.jpg'
     },
     time: {
       tag: 'SOFT SKILL — TIME MANAGEMENT',
       title: 'Time Management',
       text: 'Delivered two internships and two independent projects — the Autonomous Robot and the ANPR system — inside a single academic year, each with its own fixed deadline. Add a screenshot of a project timeline or planner here.',
       // PROOF NAME: time  →  replace the filename below
-      img: 'assets/proof/time-management.jpg'
+      img: 'assets/time-management.jpg'
     },
     adaptability: {
       tag: 'SOFT SKILL — ADAPTABILITY',
       title: 'Adaptability',
       text: 'Moved between hardware-first robotics work (Arduino, sensors, motor control) and software-first computer vision development (Python, YOLOv8, OpenCV) — picking up each toolchain as the project demanded. Add a photo of you working across either setup.',
       // PROOF NAME: adaptability  →  replace the filename below
-      img: 'assets/proof/adaptability.jpg'
+      img: 'assets/adaptability.jpg'
     },
     quicklearn: {
       tag: 'SOFT SKILL — QUICK LEARNER',
       title: 'Quick Learner',
       text: 'Completed the NPTEL "Python for Data Science" certification and put it to direct use in the same year — during the DLK Software Solutions internship. Add your certificate image here as proof.',
       // PROOF NAME: quicklearn  →  replace the filename below
-      img: 'assets/proof/quick-learner.jpg'
+      img: 'assets/quick-learner.jpg'
     },
     placement: {
       tag: 'ROLE — PLACEMENT COORDINATOR',
@@ -1175,7 +1176,7 @@ Portfolio Includes: Internship Completion Certificate, Department Feedback Form,
       // PROOF NAME: nctp  →  replace files in assets/nctps/
       // named 01.jpg through 05.jpg (currently: certificate, feedback
       // form pages, site-visit photo, in that order).
-      images: numberedImages('assets/nctps', 5)
+      images: numberedImages('assets/nctp', 5)
     },
     robot: {
       tag: 'PROJECT — 04/2025 – 05/2025',
@@ -1189,7 +1190,7 @@ Voice Control Mode enables the robot to respond to voice commands, making it mor
 
 The robot can easily switch between the four modes based on user requirements. Arduino, motor drivers, sensors, and wireless communication modules were successfully integrated into the system. The project demonstrated reliable performance during testing in all four operational modes. Developing this robot improved our knowledge of embedded systems, programming, sensor integration, and robotics. Overall, the project proved to be an effective and practical solution, showcasing automation, versatility, and real-world applications.`,
       // PROOF NAME: robot  →  replace the filename below
-      img: 'assets/tommy.jpg'
+      img: 'assets/robot-demo.jpg'
     },
     'award-robot': {
       tag: 'PAPER PRESENTATION',
@@ -1199,7 +1200,7 @@ The robot can easily switch between the four modes based on user requirements. A
       // with your real CIT Symposium write-up for the robot paper.
       text: 'Participation certificate for presenting the Multi-Mode Autonomous Robot paper at the National Level Symposium, CIT. Replace this placeholder with your own write-up.',
       // PROOF NAME: award-robot  →  replace the filename below
-      img: 'assets/cit.jpg'
+      img: 'assets/cert-cit.jpg'
     },
     'award-boiler': {
       tag: 'PAPER PRESENTATION',
@@ -1208,7 +1209,7 @@ The robot can easily switch between the four modes based on user requirements. A
 
 Received a Participation Certificate for presenting the paper "Safety Interlock System for Boiler Protection" at the National Level Technical Symposium organized by Loyola–ICAM College of Engineering and Technology (LICET), Chennai. The presentation focused on a boiler safety system designed to monitor critical operating conditions and automatically activate protective mechanisms to prevent accidents, improve operational safety, and enhance the reliability of industrial boiler systems.`,
       // PROOF NAME: award-boiler  →  replace the filename below
-      img: 'assets/proof/cert-loyola-icam.jpg'
+      img: 'assets/cert-loyola-icam.jpg'
     },
     'award-nptel': {
       tag: 'CERTIFICATION',
@@ -1224,14 +1225,14 @@ Duration: July–August 2024 (4 Weeks)
 Consolidated Score: 55%
 Skills Gained: Python Programming, NumPy, Pandas, Data Analysis, Data Visualization, Problem Solving`,
       // PROOF NAME: award-nptel  →  replace the filename below
-      img: 'assets/python.jpg'
+      img: 'assets/cert-nptel.jpg'
     },
     'award-slice': {
       tag: 'E-CERTIFICATIONS',
       title: 'Slice v25',
       text: 'Certificates from Slice v25: Codex, Byte the Bomb, Astrologiq, Cipher Odyssey, Hypothesis Hub, and Circuit Wars. Add scans of each certificate, or a combined image, here.',
       // PROOF NAME: award-slice  →  replace the filename below
-      img: 'assets/proof/cert-slice-v25.jpg'
+      img: 'assets/cert-slice-v25.jpg'
     }
   };
 
